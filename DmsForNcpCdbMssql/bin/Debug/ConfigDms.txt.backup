@@ -1,0 +1,17 @@
+﻿Config:::ObjectEndPoint:::kr.objectstorage.ncloud.com
+Config:::UseSSLObjectStorage:::1
+Config:::ObjectAccessKey:::batdkNCuljSGvJVhQr38
+Config:::ObjectSecretKey:::cgSFG0ybwUqAdjvGFW7YHiEzpoCLRTxIC2PKcSzn
+Config:::ObjectBucket:::kimmsobj
+Config:::NcpApiUrl:::ncloud.apigw.ntruss.com
+Config:::UseSSLApiGateway:::1
+Config:::DefaultTestApi:::getCloudDBConfigGroupList
+Config:::ApiGatewayAccessKey:::batdkNCuljSGvJVhQr38
+Config:::ApiGatewaySecretKey:::cgSFG0ybwUqAdjvGFW7YHiEzpoCLRTxIC2PKcSzn
+Config:::ApiGatewayKey:::cssawylPlt1Er81xpUCWpPvwbZv7a2pURPdcdR7
+Upload:::NewDatabaseName:::helloDb
+Upload:::StopAtTime:::0000-00-00T00:00:00+0900
+Upload:::FilterString:::
+Upload:::LocalDir:::c:\
+Config:::CloudDbInstanceNo:::1010059
+Upload:::InternalFolder:::
