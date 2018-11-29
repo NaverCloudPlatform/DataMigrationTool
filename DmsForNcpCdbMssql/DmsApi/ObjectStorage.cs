@@ -62,7 +62,7 @@ namespace DMS
                     {
                         if (o.BucketName == BucketName)
                         {
-                            returnValue = "success!";
+                            returnValue = CallResult.Success.ToString();
                             break;
                         }
                     }

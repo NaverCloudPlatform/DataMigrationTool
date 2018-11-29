@@ -52,7 +52,7 @@ namespace DMS
             textObjectSecretKey.Text = config.GetEnumValue(Category.Config, Key.ObjectSecretKey);
             textDefaultBucket.Text = config.GetEnumValue(Category.Config, Key.ObjectBucket);
 
-            textNcpApiUrl.Text = config.AppConfigurations[new Tuple<Category, Key>(Category.Config, Key.NcpApiUrl)];
+            textApiUrl.Text = config.AppConfigurations[new Tuple<Category, Key>(Category.Config, Key.ApiUrl)];
             textApiGatewayAccessKey.Text = config.GetEnumValue(Category.Config, Key.ApiGatewayAccessKey);
             textApiGatewaySecretKey.Text = config.GetEnumValue(Category.Config, Key.ApiGatewaySecretKey);
             textApiGatewayKey.Text = config.GetEnumValue(Category.Config, Key.ApiGatewayKey);
@@ -78,21 +78,24 @@ namespace DMS
                     textObjectEndPoint.Text = textObjectEndPoint.Text.Substring(8, textObjectEndPoint.Text.Length - 8);
             }
             catch (Exception) { }
-            bool isNCloud = false;
+            bool ConnectionTestSuccess = false;
             try
             {
                 ConfigSaveAllItem();
                 string Message = await objectStorage.CheckBucket(config.GetEnumValue(Category.Config, Key.ObjectBucket));
+                if (Message == CallResult.Success.ToString()) ConnectionTestSuccess = true; 
                 MessageBox.Show(Message); 
+                
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 nlog.Error(string.Format("{0}, {1}", ex.Message, ex.StackTrace));
+                ConnectionTestSuccess = false; 
             }
 
             if (
-                    isNCloud
+                    ConnectionTestSuccess
                     && System.Text.RegularExpressions.Regex.IsMatch
                     (
                         textObjectEndPoint.Text
@@ -101,7 +104,7 @@ namespace DMS
                     )
                 )
             {
-                textNcpApiUrl.Text = @"ncloud.apigw.ntruss.com";
+                textApiUrl.Text = @"ncloud.apigw.ntruss.com";
                 textApiGatewayAccessKey.Text = textObjectAccessKey.Text;
                 textApiGatewaySecretKey.Text = textObjectSecretKey.Text;
             }
@@ -124,7 +127,7 @@ namespace DMS
             config.SetEnumValue(Category.Config, Key.ObjectAccessKey, textObjectAccessKey.Text);
             config.SetEnumValue(Category.Config, Key.ObjectSecretKey, textObjectSecretKey.Text);
             config.SetEnumValue(Category.Config, Key.ObjectBucket, textDefaultBucket.Text);
-            config.SetEnumValue(Category.Config, Key.NcpApiUrl, textNcpApiUrl.Text);
+            config.SetEnumValue(Category.Config, Key.ApiUrl, textApiUrl.Text);
             config.SetEnumValue(Category.Config, Key.ApiGatewayAccessKey, textApiGatewayAccessKey.Text);
             config.SetEnumValue(Category.Config, Key.ApiGatewaySecretKey, textApiGatewaySecretKey.Text);
             config.SetEnumValue(Category.Config, Key.ApiGatewayKey, textApiGatewayKey.Text);
@@ -143,11 +146,11 @@ namespace DMS
             StatusUpdate(Status.Working);
             try
             {
-                if (textNcpApiUrl.Text.ToUpper().StartsWith(@"HTTP://"))
-                    textNcpApiUrl.Text = textNcpApiUrl.Text.Substring(7, textNcpApiUrl.Text.Length - 7);
+                if (textApiUrl.Text.ToUpper().StartsWith(@"HTTP://"))
+                    textApiUrl.Text = textApiUrl.Text.Substring(7, textApiUrl.Text.Length - 7);
                 
-                if (textNcpApiUrl.Text.ToUpper().StartsWith(@"HTTPS://"))
-                    textNcpApiUrl.Text = textNcpApiUrl.Text.Substring(8, textNcpApiUrl.Text.Length - 8);
+                if (textApiUrl.Text.ToUpper().StartsWith(@"HTTPS://"))
+                    textApiUrl.Text = textApiUrl.Text.Substring(8, textApiUrl.Text.Length - 8);
             }
             catch (Exception) { }
 
@@ -155,7 +158,7 @@ namespace DMS
             var postParams = new List<KeyValuePair<string, string>>();
             AsyncCall asyncCall = new AsyncCall();
             string endpointUrl = config.GetEnumValue(Category.Config, Key.UseSSLApiGateway) == "1" ? @"https://" : @"http://";
-            endpointUrl = endpointUrl + config.GetEnumValue(Category.Config, Key.NcpApiUrl);
+            endpointUrl = endpointUrl + config.GetEnumValue(Category.Config, Key.ApiUrl);
 
             Task<string> result = asyncCall.WebApiCall(
                 endpointUrl
@@ -187,7 +190,7 @@ namespace DMS
             postParams.Add(new KeyValuePair<string, string>("responseFormatType", "json"));
 
             string apiEndpointUrl = config.GetEnumValue(Category.Config, Key.UseSSLApiGateway) == "1" ? @"https://" : @"http://";
-            apiEndpointUrl = apiEndpointUrl + config.GetEnumValue(Category.Config, Key.NcpApiUrl);
+            apiEndpointUrl = apiEndpointUrl + config.GetEnumValue(Category.Config, Key.ApiUrl);
 
             Task<string> result = asyncCall.WebApiCall(
                 apiEndpointUrl
@@ -244,18 +247,18 @@ namespace DMS
                         if (b.cloudDBInstanceNo == textCloudDbInstanceNo.Text)
                         {
                             serverExists = true; 
-                            MessageBox.Show("Success");
+                            MessageBox.Show(CallResult.Success.ToString());
                             break; 
                         }
                     }
                 }
                 if (!serverExists)
-                    MessageBox.Show("Fail : Server dose not exists");
+                    MessageBox.Show(string.Format("{0} : Server dose not exists", CallResult.Fail.ToString()));
             }
             catch (Exception ex)
             {
                 nlog.Error(string.Format("{0}, {1}", ex.Message, ex.StackTrace));
-                MessageBox.Show("Fail");
+                MessageBox.Show(string.Format("{0} : {1}", CallResult.Fail.ToString(), ex.Message));
             }
             
             StatusUpdate(Status.Completed);
@@ -275,7 +278,7 @@ namespace DMS
                 postParams.Add(new KeyValuePair<string, string>("responseFormatType", "json"));
 
                 string endpointUrl = config.GetEnumValue(Category.Config, Key.UseSSLApiGateway) == "1" ? @"https://" : @"http://";
-                endpointUrl = endpointUrl + config.GetEnumValue(Category.Config, Key.NcpApiUrl);
+                endpointUrl = endpointUrl + config.GetEnumValue(Category.Config, Key.ApiUrl);
 
                 Task<string> result = asyncCall.WebApiCall(
                     endpointUrl
@@ -308,7 +311,7 @@ namespace DMS
                 postParams.Add(new KeyValuePair<string, string>("responseFormatType", "json"));
                 postParams.Add(new KeyValuePair<string, string>("regionNo", "1"));
                 string endpointUrl = config.GetEnumValue(Category.Config, Key.UseSSLApiGateway) == "1" ? @"https://" : @"http://";
-                endpointUrl = endpointUrl + config.GetEnumValue(Category.Config, Key.NcpApiUrl);
+                endpointUrl = endpointUrl + config.GetEnumValue(Category.Config, Key.ApiUrl);
 
                 Task<string> result = asyncCall.WebApiCall(
                     endpointUrl
@@ -340,7 +343,7 @@ namespace DMS
                 postParams.Add(new KeyValuePair<string, string>("folderName", ""));
                 postParams.Add(new KeyValuePair<string, string>("responseFormatType", "json"));
                 string endpointUrl = config.GetEnumValue(Category.Config, Key.UseSSLApiGateway) == "1" ? @"https://" : @"http://";
-                endpointUrl = endpointUrl + config.GetEnumValue(Category.Config, Key.NcpApiUrl);
+                endpointUrl = endpointUrl + config.GetEnumValue(Category.Config, Key.ApiUrl);
 
                 Task<string> result = asyncCall.WebApiCall(
                     endpointUrl

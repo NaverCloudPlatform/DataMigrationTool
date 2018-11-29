@@ -134,7 +134,7 @@ namespace DMS
                         postParams.Add(new KeyValuePair<string, string>("newDatabaseName", config.GetEnumValue(Category.Upload, Key.NewDatabaseName)));
                         postParams.Add(new KeyValuePair<string, string>("responseFormatType", "json"));
                         string endpointUrl = config.GetEnumValue(Category.Config, Key.UseSSLApiGateway) == "1" ? @"https://" : @"http://";
-                        endpointUrl = endpointUrl + config.GetEnumValue(Category.Config, Key.NcpApiUrl);
+                        endpointUrl = endpointUrl + config.GetEnumValue(Category.Config, Key.ApiUrl);
 
                         Task<string> result = asyncCall.WebApiCall(
                             endpointUrl
@@ -270,7 +270,7 @@ namespace DMS
                 postParams.Add(new KeyValuePair<string, string>("folderName", objectFolder));
                 postParams.Add(new KeyValuePair<string, string>("responseFormatType", "json"));
                 string endpointUrl = config.GetEnumValue(Category.Config, Key.UseSSLApiGateway) == "1" ? @"https://" : @"http://";
-                endpointUrl = endpointUrl + config.GetEnumValue(Category.Config, Key.NcpApiUrl);
+                endpointUrl = endpointUrl + config.GetEnumValue(Category.Config, Key.ApiUrl);
 
                 Task<string> result = asyncCall.WebApiCall(
                     endpointUrl
@@ -308,7 +308,7 @@ namespace DMS
                     postParams.Add(new KeyValuePair<string, string>("requestNo", a.Value.requestNo));
                     postParams.Add(new KeyValuePair<string, string>("responseFormatType", "json"));
                     string endpointUrl = config.GetEnumValue(Category.Config, Key.UseSSLApiGateway) == "1" ? @"https://" : @"http://";
-                    endpointUrl = endpointUrl + config.GetEnumValue(Category.Config, Key.NcpApiUrl);
+                    endpointUrl = endpointUrl + config.GetEnumValue(Category.Config, Key.ApiUrl);
 
                     Task<string> result = asyncCall.WebApiCall(
                         endpointUrl
@@ -399,7 +399,7 @@ namespace DMS
                         if (textStopAtTime.Text != "0000-00-00T00:00:00+0900")
                             postParams.Add(new KeyValuePair<string, string>("stopTime", textStopAtTime.Text));
                         string endpointUrl = config.GetEnumValue(Category.Config, Key.UseSSLApiGateway) == "1" ? @"https://" : @"http://";
-                        endpointUrl = endpointUrl + config.GetEnumValue(Category.Config, Key.NcpApiUrl);
+                        endpointUrl = endpointUrl + config.GetEnumValue(Category.Config, Key.ApiUrl);
 
                         Task<string> result = asyncCall.WebApiCall(
                             endpointUrl

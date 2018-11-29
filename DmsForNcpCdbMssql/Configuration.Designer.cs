@@ -50,7 +50,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.labelApiKey = new System.Windows.Forms.Label();
             this.textApiGatewayKey = new System.Windows.Forms.TextBox();
-            this.textNcpApiUrl = new System.Windows.Forms.TextBox();
+            this.textApiUrl = new System.Windows.Forms.TextBox();
             this.buttonApiGatewayTest = new System.Windows.Forms.Button();
             this.labelDefaultApi = new System.Windows.Forms.Label();
             this.textDefaultTestApi = new System.Windows.Forms.TextBox();
@@ -243,7 +243,7 @@
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.labelApiKey);
             this.groupBox2.Controls.Add(this.textApiGatewayKey);
-            this.groupBox2.Controls.Add(this.textNcpApiUrl);
+            this.groupBox2.Controls.Add(this.textApiUrl);
             this.groupBox2.Controls.Add(this.buttonApiGatewayTest);
             this.groupBox2.Controls.Add(this.labelDefaultApi);
             this.groupBox2.Controls.Add(this.textDefaultTestApi);
@@ -259,7 +259,7 @@
             this.groupBox2.Size = new System.Drawing.Size(816, 247);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "[NCP ApiGateway Info]";
+            this.groupBox2.Text = "[ApiGateway Info]";
             // 
             // textBoxAPIEndPointLable
             // 
@@ -309,12 +309,12 @@
             this.textApiGatewayKey.Size = new System.Drawing.Size(553, 22);
             this.textApiGatewayKey.TabIndex = 26;
             // 
-            // textNcpApiUrl
+            // textApiUrl
             // 
-            this.textNcpApiUrl.Location = new System.Drawing.Point(255, 22);
-            this.textNcpApiUrl.Name = "textNcpApiUrl";
-            this.textNcpApiUrl.Size = new System.Drawing.Size(318, 22);
-            this.textNcpApiUrl.TabIndex = 25;
+            this.textApiUrl.Location = new System.Drawing.Point(255, 22);
+            this.textApiUrl.Name = "textApiUrl";
+            this.textApiUrl.Size = new System.Drawing.Size(318, 22);
+            this.textApiUrl.TabIndex = 25;
             // 
             // buttonApiGatewayTest
             // 
@@ -433,7 +433,7 @@
             this.groupDatabaseServer.Size = new System.Drawing.Size(816, 105);
             this.groupDatabaseServer.TabIndex = 32;
             this.groupDatabaseServer.TabStop = false;
-            this.groupDatabaseServer.Text = "[NCP Database Info]";
+            this.groupDatabaseServer.Text = "[Database Info]";
             // 
             // button2
             // 
@@ -557,7 +557,7 @@
         private System.Windows.Forms.Label labelObjectAccesskey;
         private System.Windows.Forms.Button buttonConnectionTest;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox textNcpApiUrl;
+        private System.Windows.Forms.TextBox textApiUrl;
         private System.Windows.Forms.Button buttonApiGatewayTest;
         private System.Windows.Forms.Label labelDefaultApi;
         private System.Windows.Forms.TextBox textDefaultTestApi;

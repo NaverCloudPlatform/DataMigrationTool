@@ -4,17 +4,17 @@ DMT (Data Migration Tool)는 네이버 클라우드 데이터베이스 서버에
 
 ### 동작 방식 및 포함된 예제
 
-Cloud DB에 백업 파일을 이용해 복원하기 위해서는 몇 번의 파일 복사가 필요합니다. 첫 번째, 사용자 백업 파일을 Amazon S3 오브젝트 소로리 지나, 네이버 클라우드 플랫폼(이하 NCP) 오브젝트 스토리지(Object Storage)로 업로드합니다. 이때 S3 Browser 나 제공된 프로그램으로 업로드 가능합니다. 두 번째, 백업 리스로 어용 내부 스토리지(Internal Storage)에 업로드합니다. 세 번째, 지정한 RDS 서버에 리스토어를 해 마이그래이션을 완료합니다.(Amazon S3에 백업된 데이터베이스 파일은 NCP 오브젝트 스토리지로 옮길 필요 없이 바로 NCP 내부 스토리지로 옮길 수 있습니다. ) 내부 스토리지로 올려진 파일은 15일 이내 복구하지 않으면, 모두 삭제됩니다.
+Cloud DB에 백업 파일을 이용해 복원하기 위해서는 몇 번의 파일 복사가 필요합니다. 첫 번째, 사용자 백업 파일을 Amazon S3 오브젝트 스토리지(Object Storage)나, 네이버 클라우드 플랫폼 오브젝트 스토리지로 업로드합니다. 이때 S3 Browser 나 제공된 프로그램으로 업로드 가능합니다. 두 번째, 백업 리스로 어용 내부 스토리지(Internal Storage)에 업로드합니다. 세 번째, 지정한 RDS 서버에 리스토어를 해 마이그래이션을 완료합니다.(Amazon S3에 백업된 데이터베이스 파일은 오브젝트 스토리지로 옮길 필요 없이 바로 내부 스토리지로 옮길 수 있습니다. ) 내부 스토리지로 올려진 파일은 15일 이내 복구하지 않으면, 모두 삭제됩니다.
 
-NCP에서는 API Gateway를 이용해 오브젝트 스토리지에서 내부 스토리지로 복사, 내부 스토리지에서 데이터베이스를 복구, 백업된 내부 스토리지 파일을 조회하거나 오브젝트 스토리지로 다운로드하는 API를 제공하고 있습니다. C# 응용프로그램 DMT는 사용자가 직접 API를 작성하지 않고, 필수 정보만 입력하고 API를 호출해 마이그레이션을 할 수 있으며, 다음 예제를 포함하고 있습니다.
+API Gateway를 이용해 오브젝트 스토리지에서 내부 스토리지로 복사, 내부 스토리지에서 데이터베이스를 복구, 백업된 내부 스토리지 파일을 조회하거나 오브젝트 스토리지로 다운로드하는 API를 제공하고 있습니다. C# 응용프로그램 DMT는 사용자가 직접 API를 작성하지 않고, 필수 정보만 입력하고 API를 호출해 마이그레이션을 할 수 있으며, 다음 예제를 포함하고 있습니다.
 
-- NCP Hmac 인증 예제 
+- Hmac 인증 예제 
 - Object Storage API 호출 예제
   - Bucket 조회
   - 파일 업로드, 다운로드
   - 파일 삭제
   - 파일 리스트 
-- NCP API 호출 예제
+- API 호출 예제
   - Configuration Group 조회 
   - 내부 스토리지 파일 업로드, 다운로드
   - 리스토어 데이터베이스
@@ -28,13 +28,13 @@ NCP에서는 API Gateway를 이용해 오브젝트 스토리지에서 내부 스
   - 성능 카운터를 이용한 로컬 리소스 사용량 모니터링
   - 파일 핸들링
 
-Git Repository에서 DMT_MSSQL.zip 파일을 다운로드해 바로 마이그레이션에 사용할 수 있으며, 필요할 경우 전제 소스 파일을 다운로드해 수정 편집이 가능합니다.
+Git Repository에서 DmtMssql.zip 파일을 다운로드해 바로 마이그레이션에 사용할 수 있으며, 필요할 경우 전제 소스 파일을 다운로드해 수정 편집이 가능합니다.
 
 
 
 ### 설정 (Configuration)
 
-로컬 컴퓨터에서 접속할 오브젝트 스토리지 정보(Target Object Storage Info)와 NCP API를이용하기 위한 기본 정보(NCP API Gateway Info), 미리 생성해둔 RDS 데이터베이스 정보(NCP Database Info)가 필요합니다. 본 단계가 정상적으로 테스트 되고 저장되면 로컬 백업파일을 이용해 NCP RDS에 데이터베이스를 복구할 수 있습니다. 아래 가이드를 숙지해 해당 정보를 저장하고 다음 작업을 진행하면 됩니다.
+로컬 컴퓨터에서 접속할 오브젝트 스토리지 정보(Target Object Storage Info)와 API를 이용하기 위한 기본 정보 ( API Gateway Info), 미리 생성해둔 RDS 데이터베이스 정보(Database Info)가 필요합니다. 본 단계가 정상적으로 테스트 되고 저장되면 로컬 백업파일을 이용해 RDS에 데이터베이스를 복구할 수 있습니다. 아래 가이드를 숙지해 해당 정보를 저장하고 다음 작업을 진행하면 됩니다.
 
  ![](mdimg/dmt_0.png)
 
@@ -44,7 +44,7 @@ Git Repository에서 DMT_MSSQL.zip 파일을 다운로드해 바로 마이그레
 
 ##### EndPoint 
 
-[링크 : ObjectStorageEndPoint_URL](http://docs.ncloud.com/en/storage/storage-7-1.html) Amazon S3 EndPoint 나 NCP의 오브젝트 스토리지 접속 도메인입니다. http:// 및 https://는 제외하고 적습니다. 해당 URL 이 틀리면 A WebException with status NameResolutionFailure was thrown. 에러가 발생합니다.
+[링크 : ObjectStorageEndPoint_URL](http://docs.ncloud.com/en/storage/storage-7-1.html) Amazon S3 EndPoint 나 네이버 클라우드 플랫폼 오브젝트 스토리지 접속 도메인입니다. http:// 및 https://는 제외하고 적습니다. 해당 URL 이 틀리면 A WebException with status NameResolutionFailure was thrown. 에러가 발생합니다.
 
 ![](mdimg/dms_1.png)
 
@@ -64,7 +64,7 @@ Potal > MyPage > Manage Authentication Key 페이지에서 키를 생성합니�
 
 
 
-#### NCP API Gateway Info
+#### API Gateway Info
 
 ##### EndPoint
 
@@ -88,7 +88,7 @@ Potal > MyPage > Manage Authentication Key 페이지에서 키를 생성합니�
 
 
 
-#### NCP Database Info
+#### Database Info
 
 데이터베이스를 생성 후, DB server name 이 m-1010059-001이라면 1010059만 입력합니다. 해당 정보가 틀릴 경우 Server does not exists 오류가 발생합니다.
 
@@ -156,7 +156,7 @@ Search 버튼을 눌러 로컬 폴더를 변경합니다.
 
 ##### Change Internal Storage Folder
 
-Object Storage bucket 하위 폴더를 생성해 파일을 S3 브라우저로 올린 경우나, NCP  CDB MSSQL 백업을 내려받은 경우 해당 폴더 이름을 적습니다. Internal Storage는 Object Storage의 폴더 구조를 그대로 복사하며 수정할 수 없습니다. 
+Object Storage bucket 하위 폴더를 생성해 파일을 S3 브라우저로 올린 경우나, 네이버 클라우드 플랫폼 CDB MSSQL 백업을 내려받은 경우 해당 폴더 이름을 적습니다. Internal Storage는 Object Storage의 폴더 구조를 그대로 복사하며 수정할 수 없습니다. 
 
 ### 로그보기 (View Log)
 

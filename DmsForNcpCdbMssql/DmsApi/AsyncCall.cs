@@ -17,7 +17,7 @@ namespace DMS
             return await WebApiCall(url, calltype, action, "");
         }
 
-        public async Task<string> WebApiCall(string ncpUrl, GetPostType calltype, string action, List<KeyValuePair<string, string>> parameters)
+        public async Task<string> WebApiCall(string Url, GetPostType calltype, string action, List<KeyValuePair<string, string>> parameters)
         {
             Config config = Config.Instance;
             string accessKey = config.GetEnumValue(Category.Config, Key.ApiGatewayAccessKey);
@@ -36,7 +36,7 @@ namespace DMS
                     client.Timeout = TimeSpan.FromMilliseconds(5000);
                     string timestamp = string.Empty;
                     string sig = Auth.Instance.makeSignature(calltype, action, ref timestamp, accessKey, secureKey, apiKey);
-                    string url = ncpUrl + action;
+                    string url = Url + action;
 
                     client.DefaultRequestHeaders.Add("x-ncp-apigw-timestamp", timestamp);
                     client.DefaultRequestHeaders.Add("x-ncp-apigw-api-key", apiKey);
@@ -64,7 +64,7 @@ namespace DMS
             return responseString;
         }
 
-        public async Task<string> WebApiCall(string ncpUrl, GetPostType calltype, string action, string parameters)
+        public async Task<string> WebApiCall(string Url, GetPostType calltype, string action, string parameters)
         {
             Config config = Config.Instance;
             string accessKey = config.GetEnumValue(Category.Config, Key.ApiGatewayAccessKey);
@@ -81,7 +81,7 @@ namespace DMS
                     client.Timeout = TimeSpan.FromMilliseconds(5000);
                     string timestamp = string.Empty;
                     string sig = Auth.Instance.makeSignature(calltype, action, ref timestamp, accessKey, secureKey, apiKey);
-                    string url = ncpUrl + action;
+                    string url = Url + action;
 
                     client.DefaultRequestHeaders.Add("x-ncp-apigw-timestamp", timestamp);
                     client.DefaultRequestHeaders.Add("x-ncp-apigw-api-key", apiKey);

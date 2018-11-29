@@ -162,7 +162,7 @@ namespace DMS
                     postParams.Add(new KeyValuePair<string, string>("fileName", item.Cells[1].EditedFormattedValue.ToString()));
                     postParams.Add(new KeyValuePair<string, string>("responseFormatType", "json"));
                     string endpointUrl = config.GetEnumValue(Category.Config, Key.UseSSLApiGateway) == "1" ? @"https://" : @"http://";
-                    endpointUrl = endpointUrl + config.GetEnumValue(Category.Config, Key.NcpApiUrl);
+                    endpointUrl = endpointUrl + config.GetEnumValue(Category.Config, Key.ApiUrl);
                     Task<string> result = asyncCall.WebApiCall(
                         endpointUrl, GetPostType.POST, @"/clouddb/v1/downloadDmsFile", postParams);
                     json = await result;
@@ -254,7 +254,7 @@ namespace DMS
                 postParams.Add(new KeyValuePair<string, string>("folderName", textInternalFolder.Text));
                 postParams.Add(new KeyValuePair<string, string>("responseFormatType", "json"));
                 string endpointUrl = config.GetEnumValue(Category.Config, Key.UseSSLApiGateway) == "1" ? @"https://" : @"http://";
-                endpointUrl = endpointUrl + config.GetEnumValue(Category.Config, Key.NcpApiUrl);
+                endpointUrl = endpointUrl + config.GetEnumValue(Category.Config, Key.ApiUrl);
 
                 Task<string> result = asyncCall.WebApiCall(
                     endpointUrl

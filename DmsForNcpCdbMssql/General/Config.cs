@@ -22,7 +22,7 @@ namespace DMS
             , ObjectAccessKey
             , ObjectSecretKey
             , ObjectBucket
-            , NcpApiUrl
+            , ApiUrl
             , UseSSLApiGateway
             , DefaultTestApi
             , ApiGatewayAccessKey
@@ -35,6 +35,8 @@ namespace DMS
             , CloudDbInstanceNo
             , InternalFolder
     }
+
+    public enum CallResult { Success, Fail }
 
     public enum Status { Working, Completed }
 

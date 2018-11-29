@@ -492,7 +492,7 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "DMT for NCP CDB (MSSQL)";
+            this.Text = "DMT for CDB (MSSQL)";
             this.panel1.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
