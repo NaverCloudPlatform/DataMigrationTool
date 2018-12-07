@@ -17,7 +17,7 @@ namespace DMS
     public enum Category { Config, Upload, Download }
     public enum Key
     {
-              ObjectEndPoint
+            ObjectEndPoint
             , UseSSLObjectStorage
             , ObjectAccessKey
             , ObjectSecretKey
@@ -117,24 +117,41 @@ namespace DMS
         private void LoadConfigFromFile()
         {
             string line = string.Empty;
-            using (StreamReader file = new StreamReader(configurationFileFullName))
+            try
             {
-                AppConfigurations.Clear();
-                while ((line = file.ReadLine()) != null)
+                using (StreamReader file = new StreamReader(configurationFileFullName))
                 {
-                    string[] lineValues = line.Split(
-                        new string[] { ":::" }
-                        , StringSplitOptions.None
-                        );
+                    AppConfigurations.Clear();
+                    while ((line = file.ReadLine()) != null)
+                    {
+                        try
+                        {
+                            if (!line.StartsWith(@"#") && !(line.Trim() == ""))
+                            {
+                                string[] lineValues = line.Split(
+                                    new string[] { ":::" }
+                                    , StringSplitOptions.None
+                                    );
 
-                    AppConfigurations.Add(
-                    new Tuple<Category, Key>(
-                        (Category)Enum.Parse(typeof(Category), lineValues[0])
-                        , (Key)Enum.Parse(typeof(Key), lineValues[1])
-                        )
-                        , lineValues[2].ToString()
-                    );
+                                AppConfigurations.Add(
+                                new Tuple<Category, Key>(
+                                    (Category)Enum.Parse(typeof(Category), lineValues[0])
+                                    , (Key)Enum.Parse(typeof(Key), lineValues[1])
+                                    )
+                                , lineValues[2].ToString()
+                                );
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            nlog.Error(string.Format("{0}, {1}", ex.Message, ex.StackTrace));
+                        }
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                nlog.Error(string.Format("{0}, {1}", ex.Message, ex.StackTrace));
             }
         }
 
