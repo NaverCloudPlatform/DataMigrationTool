@@ -297,6 +297,8 @@
             // 
             this.checkRecovery.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.checkRecovery.AutoSize = true;
+            this.checkRecovery.Checked = true;
+            this.checkRecovery.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkRecovery.Font = new System.Drawing.Font("Consolas", 9F);
             this.checkRecovery.Location = new System.Drawing.Point(287, 6);
             this.checkRecovery.Name = "checkRecovery";
