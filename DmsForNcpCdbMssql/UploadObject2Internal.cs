@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NLog;
+using System.IO;
 using Newtonsoft.Json;
 using System.Threading; 
 
@@ -156,17 +157,20 @@ namespace DMS
             {
                 if (bool.Parse(item.Cells[0].Value.ToString()))
                 {
-                    var postParams = new List<KeyValuePair<string, string>>();
-                    AsyncCall asyncCall = new AsyncCall();
-                    postParams.Add(new KeyValuePair<string, string>("cloudDBInstanceNo", config.GetEnumValue(Category.Config, Key.CloudDbInstanceNo)));
-                    postParams.Add(new KeyValuePair<string, string>("fileName", item.Cells[1].EditedFormattedValue.ToString()));
-                    postParams.Add(new KeyValuePair<string, string>("responseFormatType", "json"));
-                    string endpointUrl = config.GetEnumValue(Category.Config, Key.UseSSLApiGateway) == "1" ? @"https://" : @"http://";
-                    endpointUrl = endpointUrl + config.GetEnumValue(Category.Config, Key.ApiUrl);
-                    Task<string> result = asyncCall.WebApiCall(
-                        endpointUrl, GetPostType.POST, @"/clouddb/v1/downloadDmsFile", postParams);
-                    json = await result;
-                    nlog.Warn(json);
+                    if (IsMatchFileSizeInLocal(item.Cells[1].Value.ToString(), Convert.ToInt64(item.Cells[2].Value.ToString().ToString())))
+                    {
+                        var postParams = new List<KeyValuePair<string, string>>();
+                        AsyncCall asyncCall = new AsyncCall();
+                        postParams.Add(new KeyValuePair<string, string>("cloudDBInstanceNo", config.GetEnumValue(Category.Config, Key.CloudDbInstanceNo)));
+                        postParams.Add(new KeyValuePair<string, string>("fileName", item.Cells[1].EditedFormattedValue.ToString()));
+                        postParams.Add(new KeyValuePair<string, string>("responseFormatType", "json"));
+                        string endpointUrl = config.GetEnumValue(Category.Config, Key.UseSSLApiGateway) == "1" ? @"https://" : @"http://";
+                        endpointUrl = endpointUrl + config.GetEnumValue(Category.Config, Key.ApiUrl);
+                        Task<string> result = asyncCall.WebApiCall(
+                            endpointUrl, GetPostType.POST, @"/clouddb/v1/downloadDmsFile", postParams);
+                        json = await result;
+                        nlog.Warn(json);
+                    }
                 }
             };
 
@@ -174,7 +178,41 @@ namespace DMS
             InternalStorageFileList();
             nlog.Warn("BackupStorageUpload Completed");
         }
-        
+
+        private bool IsMatchFileSizeInLocal (string filename, long filesize)
+        {
+            bool isMatch = true;
+            StatusUpdate(Status.Working);
+
+            try
+            {
+                DirectoryInfo d = new DirectoryInfo(config.GetEnumValue(Category.Upload, Key.LocalDir));
+                FileInfo[] files = d.GetFiles(filename);
+                long uiRefresh = 0;
+                
+                foreach (var file in files)
+                {
+                    if (file.Name == filename)
+                    {
+                        if (file.Length != filesize)
+                        {
+                            MessageBox.Show(string.Format("file size does not match! LocalFileSize : {0}, objectStorageFileSize : {1}", file.Length, filesize));
+                            nlog.Warn(string.Format("file size does not match! LocalFileSize : {0}, objectStorageFileSize : {1}", file.Length, filesize));
+                            isMatch = false;
+                        }
+                    }
+                    if (uiRefresh % 100 == 0) StatusUpdate(Status.Working);
+                    uiRefresh++;
+                }
+            }
+            catch (Exception ex)
+            {
+                nlog.Error(string.Format("Message : {0}, StackTrace : {1}", ex.Message, ex.StackTrace));
+            }
+            StatusUpdate(Status.Completed);
+            return isMatch;
+        }
+
         public async void InternalStorageFileList()
         {
             nlog.Warn("InternalStorageFileList Started");

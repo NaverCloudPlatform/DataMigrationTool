@@ -1,4 +1,3 @@
-﻿
 Config:::ObjectEndPoint:::kr.objectstorage.ncloud.com
 Config:::UseSSLObjectStorage:::1
 Config:::ObjectAccessKey:::batdkNCuljSGvJVhQr381
@@ -11,8 +10,6 @@ Config:::ApiGatewayAccessKey:::batdkNCuljSGvJVhQr381
 Config:::ApiGatewaySecretKey:::cgSFG0ybwUqAdjvGFW7YHiEzpoCLRTxIC2PKcSzn1
 Config:::ApiGatewayKey:::cssawylPlt1Er81xpUCWpPvwbZv7a2pURPdcdR71
 Config:::CloudDbInstanceNo:::1010059
-
-
 Upload:::NewDatabaseName:::helloDb
 Upload:::StopAtTime:::0000-00-00T00:00:00+0900
 Upload:::FilterString:::

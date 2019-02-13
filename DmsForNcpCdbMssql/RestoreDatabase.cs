@@ -128,35 +128,39 @@ namespace DMS
                         else
                             recoveryFilename = item.Cells[1].EditedFormattedValue.ToString();
 
-                        postParams.Add(new KeyValuePair<string, string>("cloudDBInstanceNo", config.GetEnumValue(Category.Config, Key.CloudDbInstanceNo)));
-                        postParams.Add(new KeyValuePair<string, string>("fileName", recoveryFilename));
-                        postParams.Add(new KeyValuePair<string, string>("isRecovery", checkStatus));
-                        postParams.Add(new KeyValuePair<string, string>("newDatabaseName", config.GetEnumValue(Category.Upload, Key.NewDatabaseName)));
-                        postParams.Add(new KeyValuePair<string, string>("responseFormatType", "json"));
-                        string endpointUrl = config.GetEnumValue(Category.Config, Key.UseSSLApiGateway) == "1" ? @"https://" : @"http://";
-                        endpointUrl = endpointUrl + config.GetEnumValue(Category.Config, Key.ApiUrl);
+                        long recoveryFileSize = Convert.ToInt64(item.Cells[2].EditedFormattedValue.ToString()); 
+                        if (await IsMatchFileSizeInObjectStorage(recoveryFilename, recoveryFileSize))
+                        {
+                            postParams.Add(new KeyValuePair<string, string>("cloudDBInstanceNo", config.GetEnumValue(Category.Config, Key.CloudDbInstanceNo)));
+                            postParams.Add(new KeyValuePair<string, string>("fileName", recoveryFilename));
+                            postParams.Add(new KeyValuePair<string, string>("isRecovery", checkStatus));
+                            postParams.Add(new KeyValuePair<string, string>("newDatabaseName", config.GetEnumValue(Category.Upload, Key.NewDatabaseName)));
+                            postParams.Add(new KeyValuePair<string, string>("responseFormatType", "json"));
+                            string endpointUrl = config.GetEnumValue(Category.Config, Key.UseSSLApiGateway) == "1" ? @"https://" : @"http://";
+                            endpointUrl = endpointUrl + config.GetEnumValue(Category.Config, Key.ApiUrl);
 
-                        Task<string> result = asyncCall.WebApiCall(
-                            endpointUrl
-                            , GetPostType.POST
-                            , @"/clouddb/v1/restoreDmsDatabase"
-                            , postParams);
+                            Task<string> result = asyncCall.WebApiCall(
+                                endpointUrl
+                                , GetPostType.POST
+                                , @"/clouddb/v1/restoreDmsDatabase"
+                                , postParams);
 
-                        json = await result;
-                        nlog.Warn(json);
+                            json = await result;
+                            nlog.Warn(json);
 
-                        restoreDmsDatabase restoreDmsDatabase = JsonConvert.DeserializeObject<restoreDmsDatabase>(json);
-                        ApiResponseRecord(
-                            config.GetEnumValue(Category.Config, Key.CloudDbInstanceNo),
-                            config.GetEnumValue(Category.Upload, Key.NewDatabaseName),
-                            item.Cells[1].EditedFormattedValue.ToString()
-                            , new Response
-                            {
-                                requestNo = restoreDmsDatabase.restoreDmsDatabaseResponse.requestNo,
-                                requestReturnCode = restoreDmsDatabase.restoreDmsDatabaseResponse.returnCode,
-                                returnCode = "",
-                                returnCodeName = ""
-                            });
+                            restoreDmsDatabase restoreDmsDatabase = JsonConvert.DeserializeObject<restoreDmsDatabase>(json);
+                            ApiResponseRecord(
+                                config.GetEnumValue(Category.Config, Key.CloudDbInstanceNo),
+                                config.GetEnumValue(Category.Upload, Key.NewDatabaseName),
+                                item.Cells[1].EditedFormattedValue.ToString()
+                                , new Response
+                                {
+                                    requestNo = restoreDmsDatabase.restoreDmsDatabaseResponse.requestNo,
+                                    requestReturnCode = restoreDmsDatabase.restoreDmsDatabaseResponse.returnCode,
+                                    returnCode = "",
+                                    returnCodeName = ""
+                                });
+                        }
                     }
                 }
             }
@@ -167,6 +171,40 @@ namespace DMS
 
             BackupStorageFileList();
             nlog.Warn("buttonDatabaseRecovery Completed");
+        }
+
+
+        private async Task<bool> IsMatchFileSizeInObjectStorage(string filename, long filesize)
+        {
+            bool isMatch = true;
+            StatusUpdate(Status.Working);
+            
+            try
+            {
+                Task<List<ObjectStorageFile>> result = objectStorage.list(config.GetEnumValue(Category.Config, Key.ObjectBucket));
+                List<ObjectStorageFile> files = await result;
+                long uiRefresh = 0;
+                foreach (var file in files)
+                {
+                    if(file.Name == filename)
+                    {
+                        if (file.Length != filesize)
+                        {
+                            MessageBox.Show(string.Format("file size does not match! objectStorageFileSize : {0}, internalStorageFileSize : {1}", file.Length, filesize));
+                            nlog.Warn(string.Format("file size does not match! objectStorageFileSize : {0}, internalStorageFileSize : {1}", file.Length, filesize));
+                            isMatch = false;
+                        }
+                    }
+                    if (uiRefresh % 100 == 0) StatusUpdate(Status.Working);
+                    uiRefresh++;
+                }
+            }
+            catch (Exception ex)
+            {
+                nlog.Error(string.Format("Message : {0}, StackTrace : {1}", ex.Message, ex.StackTrace));
+            }
+            StatusUpdate(Status.Completed);
+            return isMatch;  
         }
 
         private void buttonReload_Click(object sender, EventArgs e)
@@ -391,36 +429,40 @@ namespace DMS
                         else
                             recoveryFilename = item.Cells[1].EditedFormattedValue.ToString();
 
-                        postParams.Add(new KeyValuePair<string, string>("cloudDBInstanceNo", config.GetEnumValue(Category.Config, Key.CloudDbInstanceNo)));
-                        postParams.Add(new KeyValuePair<string, string>("fileName", recoveryFilename));
-                        postParams.Add(new KeyValuePair<string, string>("isRecovery", checkStatus));
-                        postParams.Add(new KeyValuePair<string, string>("newDatabaseName", config.GetEnumValue(Category.Upload, Key.NewDatabaseName)));
-                        postParams.Add(new KeyValuePair<string, string>("responseFormatType", "json"));
-                        if (textStopAtTime.Text != "0000-00-00T00:00:00+0900")
-                            postParams.Add(new KeyValuePair<string, string>("stopTime", textStopAtTime.Text));
-                        string endpointUrl = config.GetEnumValue(Category.Config, Key.UseSSLApiGateway) == "1" ? @"https://" : @"http://";
-                        endpointUrl = endpointUrl + config.GetEnumValue(Category.Config, Key.ApiUrl);
+                        long recoveryFileSize = Convert.ToInt64(item.Cells[2].EditedFormattedValue.ToString());
+                        if (await IsMatchFileSizeInObjectStorage(recoveryFilename, recoveryFileSize))
+                        {
+                            postParams.Add(new KeyValuePair<string, string>("cloudDBInstanceNo", config.GetEnumValue(Category.Config, Key.CloudDbInstanceNo)));
+                            postParams.Add(new KeyValuePair<string, string>("fileName", recoveryFilename));
+                            postParams.Add(new KeyValuePair<string, string>("isRecovery", checkStatus));
+                            postParams.Add(new KeyValuePair<string, string>("newDatabaseName", config.GetEnumValue(Category.Upload, Key.NewDatabaseName)));
+                            postParams.Add(new KeyValuePair<string, string>("responseFormatType", "json"));
+                            if (textStopAtTime.Text != "0000-00-00T00:00:00+0900")
+                                postParams.Add(new KeyValuePair<string, string>("stopTime", textStopAtTime.Text));
+                            string endpointUrl = config.GetEnumValue(Category.Config, Key.UseSSLApiGateway) == "1" ? @"https://" : @"http://";
+                            endpointUrl = endpointUrl + config.GetEnumValue(Category.Config, Key.ApiUrl);
 
-                        Task<string> result = asyncCall.WebApiCall(
-                            endpointUrl
-                            , GetPostType.POST
-                            , @"/clouddb/v1/restoreDmsTransactionLog"
-                            , postParams);
+                            Task<string> result = asyncCall.WebApiCall(
+                                endpointUrl
+                                , GetPostType.POST
+                                , @"/clouddb/v1/restoreDmsTransactionLog"
+                                , postParams);
 
-                        json = await result;
-                        nlog.Warn(json);
-                        restoreDmsTransactionLog restoreDmsTransactionLog = JsonConvert.DeserializeObject<restoreDmsTransactionLog>(json);
-                        ApiResponseRecord(
-                            config.GetEnumValue(Category.Config, Key.CloudDbInstanceNo),
-                            config.GetEnumValue(Category.Upload, Key.NewDatabaseName),
-                            item.Cells[1].EditedFormattedValue.ToString()
-                            , new Response
-                            {
-                                requestNo = restoreDmsTransactionLog.restoreDmsTransactionLogResponse.requestNo,
-                                requestReturnCode = restoreDmsTransactionLog.restoreDmsTransactionLogResponse.returnCode,
-                                returnCode = "",
-                                returnCodeName = ""
-                            });
+                            json = await result;
+                            nlog.Warn(json);
+                            restoreDmsTransactionLog restoreDmsTransactionLog = JsonConvert.DeserializeObject<restoreDmsTransactionLog>(json);
+                            ApiResponseRecord(
+                                config.GetEnumValue(Category.Config, Key.CloudDbInstanceNo),
+                                config.GetEnumValue(Category.Upload, Key.NewDatabaseName),
+                                item.Cells[1].EditedFormattedValue.ToString()
+                                , new Response
+                                {
+                                    requestNo = restoreDmsTransactionLog.restoreDmsTransactionLogResponse.requestNo,
+                                    requestReturnCode = restoreDmsTransactionLog.restoreDmsTransactionLogResponse.returnCode,
+                                    returnCode = "",
+                                    returnCodeName = ""
+                                });
+                        }
                     }
                 }
                 BackupStorageFileList();
