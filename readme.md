@@ -34,7 +34,7 @@ Git Repository에서 DmtMssql.zip 파일을 다운로드해 바로 마이그레�
 
 ### 설정 (Configuration)
 
-로컬 컴퓨터에서 접속할 오브젝트 스토리지 정보(Target Object Storage Info)와 API를 이용하기 위한 기본 정보 ( API Gateway Info), 미리 생성해둔 RDS 데이터베이스 정보(Database Info)가 필요합니다. 본 단계가 정상적으로 테스트 되고 저장되면 로컬 백업파일을 이용해 RDS에 데이터베이스를 복구할 수 있습니다. 아래 가이드를 숙지해 해당 정보를 저장하고 다음 작업을 진행하면 됩니다.
+로컬 컴퓨터에서 접속할 오브젝트 스토리지 정보(Target Object Storage Info)와 API를 이용하기 위한 기본 정보 ( API Gateway Info), 미리 생성해둔 RDS 데이터베이스 정보(Database Info)가 필요합니다. 본 단계가 정상적으로 테스트 되고 저장되면 로컬 백업파일을 이용해 RDS에 데이터베이스를 복구할 수 있습니다. 아래 가이드를 숙지해 해당 정보를 저장하고 다음 작업을 진행하면 됩니다. (업로드 할 파일이름은 한글과 공백을 지원하지 않습니다.)
 
  ![](mdimg/dmt_0.png)
 
