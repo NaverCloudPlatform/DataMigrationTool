@@ -37,7 +37,7 @@ namespace DMS
             
             config = Config.Instance;
             objectStorage = ObjectStorage.Instance;
-            WriteConfig2TextBox();
+            
         }
 
         public void WriteConfig2TextBox()
@@ -63,7 +63,8 @@ namespace DMS
                 checkSSLApiGateway.CheckState = CheckState.Checked;
             else
                 checkSSLApiGateway.CheckState = CheckState.Unchecked;
-            
+
+            config.ConfigurationBackup();
         }
 
         private async void buttonConnectionTest_Click(object sender, EventArgs e)

@@ -53,11 +53,10 @@ namespace DMS
                 , LazyThreadSafetyMode.ExecutionAndPublication
                 );
 
-
-        private string appPath = string.Empty;
-        private string configFile = string.Empty;
+        private string appPath = "./";
+        private string configFile = "ConfigDms.txt"; // Thanks to Pooh's advice 
         string configurationFileFullName = string.Empty;
-        public Dictionary<Tuple<Category, Key>, string> AppConfigurations;
+        public Dictionary<Tuple<Category, Key>, string> AppConfigurations = new Dictionary<Tuple<Category, Key>, string>();
         public object lockObject = new object(); 
         public string GetEnumValue(Category category, Key key)
         {
@@ -81,15 +80,13 @@ namespace DMS
    
         public Config()
         {
-            this.appPath = Application.StartupPath;
-            this.configFile = "ConfigDms.txt";
-            this.configurationFileFullName = Path.Combine(appPath, configFile);
-            AppConfigurations = new Dictionary<Tuple<Category, Key>, string>();
-
+            LoadConfigFromFile();
+        }
+        
+        public void ConfigurationBackup()
+        {
             if (!File.Exists(Path.Combine(appPath, configFile + ".backup")))
                 File.Copy(Path.Combine(appPath, configFile), Path.Combine(appPath, configFile + ".backup"));
-             
-            LoadConfigFromFile();
         }
 
         public void WriteConfigToFile()
@@ -116,6 +113,9 @@ namespace DMS
 
         private void LoadConfigFromFile()
         {
+
+            configurationFileFullName = Path.Combine(appPath, configFile);
+
             string line = string.Empty;
             try
             {

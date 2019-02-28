@@ -70,7 +70,7 @@ namespace DMS
             configuration.BringToFront();
             panelLeft.Height = buttonConfiguration.Height;
             panelLeft.Top = buttonConfiguration.Top;
-            configuration.WriteConfig2TextBox();
+            //configuration.WriteConfig2TextBox();
             clearSubjectRegular();
             buttonConfiguration.ForeColor = Color.FromArgb(90, 188, 211);
             buttonConfiguration.BackColor = Color.FromArgb(64, 64, 64);
@@ -212,6 +212,11 @@ namespace DMS
             catch (Exception) { }
             return (int)instanceValue;
         }
-        
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            configuration.WriteConfig2TextBox();
+
+        }
     }
 }
