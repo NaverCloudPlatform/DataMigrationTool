@@ -157,8 +157,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AutoVersionUpdater.tt</DependentUpon>
     </Content>
-    <None Include="ClassDiagram1.cd" />
-    <None Include="ClassDiagram2.cd" />
     <EmbeddedResource Include="DownloadObject2Local.resx">
       <DependentUpon>DownloadObject2Local.cs</DependentUpon>
     </EmbeddedResource>
@@ -194,7 +192,9 @@
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

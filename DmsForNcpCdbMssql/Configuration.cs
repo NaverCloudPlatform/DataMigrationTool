@@ -245,7 +245,8 @@ namespace DMS
                     foreach (var b in cloudDBInstanceList)
                     {
                         nlog.Warn(b.cloudDBInstanceNo);
-                        if (b.cloudDBInstanceNo == textCloudDbInstanceNo.Text)
+                        //if (b.cloudDBInstanceNo == textCloudDbInstanceNo.Text)
+                        if (b.cloudDBInstanceNo.Equals(textCloudDbInstanceNo.Text.Trim()))
                         {
                             serverExists = true; 
                             MessageBox.Show(CallResult.Success.ToString());
