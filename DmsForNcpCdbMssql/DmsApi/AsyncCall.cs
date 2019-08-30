@@ -33,7 +33,7 @@ namespace DMS
 
                 using (HttpClient client = new HttpClient())
                 {
-                    client.Timeout = TimeSpan.FromMilliseconds(5000);
+                    client.Timeout = TimeSpan.FromMilliseconds(30000);
                     string timestamp = string.Empty;
                     string sig = Auth.Instance.makeSignature(calltype, action, ref timestamp, accessKey, secureKey, apiKey);
                     string url = Url + action;
