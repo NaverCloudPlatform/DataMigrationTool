@@ -17,13 +17,19 @@ namespace DMS
 {
     public partial class UploadLocal2Object : UserControl
     {
+        private static readonly Lazy<UploadLocal2Object> lazy =
+            new Lazy<UploadLocal2Object>(() => new UploadLocal2Object(), LazyThreadSafetyMode.ExecutionAndPublication);
+
+        public static UploadLocal2Object Instance { get { return lazy.Value; } }
+
         Config config;
         ObjectStorage objectStorage;
         private static Logger nlog = LogManager.GetCurrentClassLogger();
         public event EventHandler<StatusEventArgs> StatusChangeEvent;
         private bool workLocalStorage = false;
         private bool workObjectStorage = false;
-        public UploadLocal2Object()
+
+        private UploadLocal2Object()
         {
             InitializeComponent();
             dgvLocalDrive.RowHeadersVisible = false;

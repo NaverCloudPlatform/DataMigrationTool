@@ -25,7 +25,7 @@ namespace DMS
         {
             InitializeComponent();
             nlog.Warn("DMS App Started");
-            configuration.BringToFront();
+            //configuration.BringToFront();
             panelLeft.Height = buttonConfiguration.Height;
             panelLeft.Top = buttonConfiguration.Top;
             clearSubjectRegular();
@@ -33,13 +33,13 @@ namespace DMS
             buttonConfiguration.BackColor = Color.FromArgb(64, 64, 64);
 
             config = Config.Instance;
-            configuration.StatusChangeEvent += UpdateBottomStatusText;
-            uploadLocal2Object.StatusChangeEvent += UpdateBottomStatusText;
-            uploadObject2Internal.StatusChangeEvent += UpdateBottomStatusText;
-            restoreDatabase.StatusChangeEvent += UpdateBottomStatusText;
-            viewLog.StatusChangeEvent += UpdateBottomStatusText;
-            downloadInternal2Object.StatusChangeEvent += UpdateBottomStatusText;
-            downloadObject2Local.StatusChangeEvent += UpdateBottomStatusText;
+            
+            //uploadLocal2Object.StatusChangeEvent += UpdateBottomStatusText;
+            //uploadObject2Internal.StatusChangeEvent += UpdateBottomStatusText;
+            //restoreDatabase.StatusChangeEvent += UpdateBottomStatusText;
+            //viewLog.StatusChangeEvent += UpdateBottomStatusText;
+            //downloadInternal2Object.StatusChangeEvent += UpdateBottomStatusText;
+            //downloadObject2Local.StatusChangeEvent += UpdateBottomStatusText;
             GenerateCounter();
             labelVersion.Text = string.Format("DMS Version : {0}", Application.ProductVersion);
             timer.Start();
@@ -67,90 +67,186 @@ namespace DMS
 
         private void buttonConfiguration_Click(object sender, EventArgs e)
         {
-            configuration.BringToFront();
+            ConfigurationLoad();
+        }
+
+        private void ConfigurationLoad()
+        {
+            RemoveAllUc();
+
+            if (!panelMain.Controls.Contains(Configuration.Instance))
+            {
+                panelMain.Controls.Add(Configuration.Instance);
+                Configuration.Instance.Dock = DockStyle.Fill;
+            }
+
+            Configuration.Instance.BringToFront();
+            Configuration.Instance.StatusChangeEvent += UpdateBottomStatusText;
+
             panelLeft.Height = buttonConfiguration.Height;
             panelLeft.Top = buttonConfiguration.Top;
-            //configuration.WriteConfig2TextBox();
+            Configuration.Instance.WriteConfig2TextBox();
             clearSubjectRegular();
             buttonConfiguration.ForeColor = Color.FromArgb(90, 188, 211);
             buttonConfiguration.BackColor = Color.FromArgb(64, 64, 64);
         }
 
+        private void RemoveAllUc()
+        {
+            if (panelMain.Controls.Contains(Configuration.Instance))
+                panelMain.Controls.Remove(Configuration.Instance);
+            if (panelMain.Controls.Contains(UploadLocal2Object.Instance))
+                panelMain.Controls.Remove(UploadLocal2Object.Instance);
+            if (panelMain.Controls.Contains(UploadObject2Internal.Instance))
+                panelMain.Controls.Remove(UploadObject2Internal.Instance);
+            if (panelMain.Controls.Contains(RestoreDatabase.Instance))
+                panelMain.Controls.Remove(RestoreDatabase.Instance);
+            if (panelMain.Controls.Contains(DownloadInternal2Object.Instance))
+                panelMain.Controls.Remove(DownloadInternal2Object.Instance);
+            if (panelMain.Controls.Contains(DownloadObject2Local.Instance))
+                panelMain.Controls.Remove(DownloadObject2Local.Instance);
+            if (panelMain.Controls.Contains(ViewLog.Instance))
+                panelMain.Controls.Remove(ViewLog.Instance);
+        }
+
+
         private void buttonUploadLocal2Object_Click(object sender, EventArgs e)
         {
-            uploadLocal2Object.BringToFront();
+
+            RemoveAllUc();
+
+            if (!panelMain.Controls.Contains(UploadLocal2Object.Instance))
+            {
+                panelMain.Controls.Add(UploadLocal2Object.Instance);
+                UploadLocal2Object.Instance.Dock = DockStyle.Fill;
+            }
+
+            UploadLocal2Object.Instance.BringToFront();
+            UploadLocal2Object.Instance.StatusChangeEvent += UpdateBottomStatusText;
+
             panelLeft.Height = buttonObjectStorageUpload.Height;
             panelLeft.Top = buttonObjectStorageUpload.Top;
-            uploadLocal2Object.WriteConfig2TextBox();
+            UploadLocal2Object.Instance.WriteConfig2TextBox();
             clearSubjectRegular();
             buttonObjectStorageUpload.ForeColor = Color.FromArgb(90, 188, 211);
             buttonObjectStorageUpload.BackColor = Color.FromArgb(64, 64, 64);
-            uploadLocal2Object.loadLocalDriveFileList();
-            uploadLocal2Object.ObjectStorageFileList();
+            UploadLocal2Object.Instance.loadLocalDriveFileList();
+            UploadLocal2Object.Instance.ObjectStorageFileList();
         }
 
         private void buttonUploadObject2Internal_Click(object sender, EventArgs e)
         {
-            uploadObject2Internal.BringToFront();
+
+            RemoveAllUc();
+
+            if (!panelMain.Controls.Contains(UploadObject2Internal.Instance))
+            {
+                panelMain.Controls.Add(UploadObject2Internal.Instance);
+                UploadObject2Internal.Instance.Dock = DockStyle.Fill;
+            }
+
+            UploadObject2Internal.Instance.BringToFront();
+            UploadObject2Internal.Instance.StatusChangeEvent += UpdateBottomStatusText;
+
             panelLeft.Height = buttonBackupStorageUpload.Height;
             panelLeft.Top = buttonBackupStorageUpload.Top;
-            uploadObject2Internal.WriteConfig2TextBox();
+            UploadObject2Internal.Instance.WriteConfig2TextBox();
             clearSubjectRegular();
             buttonBackupStorageUpload.ForeColor = Color.FromArgb(90, 188, 211);
             buttonBackupStorageUpload.BackColor = Color.FromArgb(64, 64, 64);
-            uploadObject2Internal.InternalStorageFileList();
-            uploadObject2Internal.ObjectStorageFileList();
+            UploadObject2Internal.Instance.InternalStorageFileList();
+            UploadObject2Internal.Instance.ObjectStorageFileList();
         }
 
         private void buttonRestoreDatabase_Click(object sender, EventArgs e)
         {
-            restoreDatabase.BringToFront();
+            RemoveAllUc();
+
+            if (!panelMain.Controls.Contains(RestoreDatabase.Instance))
+            {
+                panelMain.Controls.Add(RestoreDatabase.Instance);
+                RestoreDatabase.Instance.Dock = DockStyle.Fill;
+            }
+
+            RestoreDatabase.Instance.BringToFront();
+            RestoreDatabase.Instance.StatusChangeEvent += UpdateBottomStatusText;
+
             panelLeft.Height = buttonRestoreDatabase.Height;
             panelLeft.Top = buttonRestoreDatabase.Top;
-            restoreDatabase.WriteConfig2TextBox();
+            RestoreDatabase.Instance.WriteConfig2TextBox();
             clearSubjectRegular();
             buttonRestoreDatabase.ForeColor = Color.FromArgb(90, 188, 211);
             buttonRestoreDatabase.BackColor = Color.FromArgb(64, 64, 64);
-            restoreDatabase.BackupStorageFileList();
+            RestoreDatabase.Instance.BackupStorageFileList();
         }
-        
+
         private void buttonDownloadInternal2Object_Click(object sender, EventArgs e)
         {
-            downloadInternal2Object.BringToFront();
+            RemoveAllUc();
+
+            if (!panelMain.Controls.Contains(DownloadInternal2Object.Instance))
+            {
+                panelMain.Controls.Add(DownloadInternal2Object.Instance);
+                DownloadInternal2Object.Instance.Dock = DockStyle.Fill;
+            }
+
+            DownloadInternal2Object.Instance.BringToFront();
+            DownloadInternal2Object.Instance.StatusChangeEvent += UpdateBottomStatusText;
+            
             panelLeft.Height = buttonDbBackupDownload.Height;
             panelLeft.Top = buttonDbBackupDownload.Top;
-            downloadInternal2Object.WriteConfig2TextBox();
+            DownloadInternal2Object.Instance.WriteConfig2TextBox();
             clearSubjectRegular();
             buttonDbBackupDownload.ForeColor = Color.FromArgb(90, 188, 211);
             buttonDbBackupDownload.BackColor = Color.FromArgb(64, 64, 64);
-            downloadInternal2Object.InternalStorageFileList();
-            downloadInternal2Object.ObjectStorageFileList();
+            DownloadInternal2Object.Instance.InternalStorageFileList();
+            DownloadInternal2Object.Instance.ObjectStorageFileList();
         }
 
         private void buttonDownloadObject2Local_Click(object sender, EventArgs e)
         {
-            downloadObject2Local.BringToFront();
+            RemoveAllUc();
+
+            if (!panelMain.Controls.Contains(DownloadObject2Local.Instance))
+            {
+                panelMain.Controls.Add(DownloadObject2Local.Instance);
+                DownloadObject2Local.Instance.Dock = DockStyle.Fill;
+            }
+
+            DownloadObject2Local.Instance.BringToFront();
+            DownloadObject2Local.Instance.StatusChangeEvent += UpdateBottomStatusText;
+
             panelLeft.Height = buttonDownloadObject2Local.Height;
             panelLeft.Top = buttonDownloadObject2Local.Top;
-            downloadObject2Local.WriteConfig2TextBox();
+            DownloadObject2Local.Instance.WriteConfig2TextBox();
             clearSubjectRegular();
             buttonDownloadObject2Local.ForeColor = Color.FromArgb(90, 188, 211);
             buttonDownloadObject2Local.BackColor = Color.FromArgb(64, 64, 64);
-            downloadObject2Local.loadLocalDriveFileList();
-            downloadObject2Local.ObjectStorageFileList();
+            DownloadObject2Local.Instance.loadLocalDriveFileList();
+            DownloadObject2Local.Instance.ObjectStorageFileList();
         }
 
         private void buttonViewLog_Click(object sender, EventArgs e)
         {
-            viewLog.BringToFront();
+            RemoveAllUc();
+
+            if (!panelMain.Controls.Contains(ViewLog.Instance))
+            {
+                panelMain.Controls.Add(ViewLog.Instance);
+                ViewLog.Instance.Dock = DockStyle.Fill;
+            }
+
+            ViewLog.Instance.BringToFront();
+            ViewLog.Instance.StatusChangeEvent += UpdateBottomStatusText;
+
             panelLeft.Height = buttonViewLog.Height;
             panelLeft.Top = buttonViewLog.Top;
-            viewLog.WriteConfig2TextBox();
+            ViewLog.Instance.WriteConfig2TextBox();
             clearSubjectRegular();
             buttonViewLog.Font = new Font(buttonViewLog.Font, FontStyle.Bold);
             buttonViewLog.ForeColor = Color.FromArgb(90, 188, 211);
             buttonViewLog.BackColor = Color.FromArgb(64, 64, 64);
-            viewLog.ReadLog();
+            ViewLog.Instance.ReadLog();
         }
 
         private void UpdateBottomStatusText(object sender, StatusEventArgs e)
@@ -215,8 +311,8 @@ namespace DMS
 
         private void Form1_Shown(object sender, EventArgs e)
         {
-            configuration.WriteConfig2TextBox();
-
+            //configuration.WriteConfig2TextBox();
+            ConfigurationLoad();
         }
     }
 }

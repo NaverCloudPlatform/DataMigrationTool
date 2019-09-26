@@ -25,7 +25,7 @@ namespace DMS
             config = Config.Instance;
         }
 
-        public string makeSignature(GetPostType calltype, string action, ref string stringtimestamp, string accessKey, string secureKey, string apiKey)
+        public string makeSignature(GetPostType calltype, string action, ref string stringtimestamp, string accessKey, string secureKey/*, string apiKey*/)
         {
            
             if (string.IsNullOrEmpty(action))
@@ -44,8 +44,8 @@ namespace DMS
                     .Append(newLine)
                     .Append(stringtimestamp)
                     .Append(newLine)
-                    .Append(apiKey)
-                    .Append(newLine)
+                    //.Append(apiKey)
+                    //.Append(newLine)
                     .Append(accessKey)
                     .ToString();
 

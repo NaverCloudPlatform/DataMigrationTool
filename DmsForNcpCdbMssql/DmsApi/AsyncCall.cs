@@ -22,7 +22,7 @@ namespace DMS
             Config config = Config.Instance;
             string accessKey = config.GetEnumValue(Category.Config, Key.ApiGatewayAccessKey);
             string secureKey = config.GetEnumValue(Category.Config, Key.ApiGatewaySecretKey);
-            string apiKey = config.GetEnumValue(Category.Config, Key.ApiGatewayKey);
+            //string apiKey = config.GetEnumValue(Category.Config, Key.ApiGatewayKey);
             string responseString = string.Empty;
             try
             {
@@ -35,11 +35,11 @@ namespace DMS
                 {
                     client.Timeout = TimeSpan.FromMilliseconds(30000);
                     string timestamp = string.Empty;
-                    string sig = Auth.Instance.makeSignature(calltype, action, ref timestamp, accessKey, secureKey, apiKey);
+                    string sig = Auth.Instance.makeSignature(calltype, action, ref timestamp, accessKey, secureKey/*, apiKey*/);
                     string url = Url + action;
 
                     client.DefaultRequestHeaders.Add("x-ncp-apigw-timestamp", timestamp);
-                    client.DefaultRequestHeaders.Add("x-ncp-apigw-api-key", apiKey);
+                    //client.DefaultRequestHeaders.Add("x-ncp-apigw-api-key", apiKey);
                     client.DefaultRequestHeaders.Add("x-ncp-iam-access-key", accessKey);
                     client.DefaultRequestHeaders.Add("x-ncp-apigw-signature-v1", sig);
 
@@ -69,7 +69,7 @@ namespace DMS
             Config config = Config.Instance;
             string accessKey = config.GetEnumValue(Category.Config, Key.ApiGatewayAccessKey);
             string secureKey = config.GetEnumValue(Category.Config, Key.ApiGatewaySecretKey);
-            string apiKey = config.GetEnumValue(Category.Config, Key.ApiGatewayKey);
+            //string apiKey = config.GetEnumValue(Category.Config, Key.ApiGatewayKey);
             string responseString = string.Empty;
 
             nlog.Warn(string.Format("parameters: {0}", parameters));
@@ -78,13 +78,13 @@ namespace DMS
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    client.Timeout = TimeSpan.FromMilliseconds(5000);
+                    client.Timeout = TimeSpan.FromMilliseconds(30000);
                     string timestamp = string.Empty;
-                    string sig = Auth.Instance.makeSignature(calltype, action, ref timestamp, accessKey, secureKey, apiKey);
+                    string sig = Auth.Instance.makeSignature(calltype, action, ref timestamp, accessKey, secureKey/*, apiKey*/);
                     string url = Url + action;
 
                     client.DefaultRequestHeaders.Add("x-ncp-apigw-timestamp", timestamp);
-                    client.DefaultRequestHeaders.Add("x-ncp-apigw-api-key", apiKey);
+                    //client.DefaultRequestHeaders.Add("x-ncp-apigw-api-key", apiKey);
                     client.DefaultRequestHeaders.Add("x-ncp-iam-access-key", accessKey);
                     client.DefaultRequestHeaders.Add("x-ncp-apigw-signature-v1", sig);
 

@@ -9,18 +9,23 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using NLog;
 using Newtonsoft.Json;
+using System.Threading; 
 
 namespace DMS
 {
     public partial class Configuration : UserControl
     {
+        private static readonly Lazy<Configuration> lazy =
+            new Lazy<Configuration>(() => new Configuration(), LazyThreadSafetyMode.ExecutionAndPublication);
 
+        public static Configuration Instance { get { return lazy.Value; } }
+        
         Config config;
         ObjectStorage objectStorage;
         private static Logger nlog = LogManager.GetCurrentClassLogger();
         public event EventHandler<StatusEventArgs> StatusChangeEvent;
 
-        public Configuration()
+        private Configuration()
         {
             InitializeComponent();
             textBoxEndPointLable.Text = @"http://docs.ncloud.com/en/storage/storage-7-1.html";
@@ -37,7 +42,6 @@ namespace DMS
             
             config = Config.Instance;
             objectStorage = ObjectStorage.Instance;
-            
         }
 
         public void WriteConfig2TextBox()
@@ -55,7 +59,7 @@ namespace DMS
             textApiUrl.Text = config.AppConfigurations[new Tuple<Category, Key>(Category.Config, Key.ApiUrl)];
             textApiGatewayAccessKey.Text = config.GetEnumValue(Category.Config, Key.ApiGatewayAccessKey);
             textApiGatewaySecretKey.Text = config.GetEnumValue(Category.Config, Key.ApiGatewaySecretKey);
-            textApiGatewayKey.Text = config.GetEnumValue(Category.Config, Key.ApiGatewayKey);
+            //textApiGatewayKey.Text = config.GetEnumValue(Category.Config, Key.ApiGatewayKey);
             textDefaultTestApi.Text = config.GetEnumValue(Category.Config, Key.DefaultTestApi);
             textCloudDbInstanceNo.Text = config.GetEnumValue(Category.Config, Key.CloudDbInstanceNo);
 
@@ -131,7 +135,7 @@ namespace DMS
             config.SetEnumValue(Category.Config, Key.ApiUrl, textApiUrl.Text);
             config.SetEnumValue(Category.Config, Key.ApiGatewayAccessKey, textApiGatewayAccessKey.Text);
             config.SetEnumValue(Category.Config, Key.ApiGatewaySecretKey, textApiGatewaySecretKey.Text);
-            config.SetEnumValue(Category.Config, Key.ApiGatewayKey, textApiGatewayKey.Text);
+            //config.SetEnumValue(Category.Config, Key.ApiGatewayKey, textApiGatewayKey.Text);
             config.SetEnumValue(Category.Config, Key.UseSSLApiGateway, checkSSLApiGateway.CheckState == CheckState.Checked ? "1" : "0");
             config.SetEnumValue(Category.Config, Key.DefaultTestApi, textDefaultTestApi.Text);
             config.SetEnumValue(Category.Config, Key.CloudDbInstanceNo, textCloudDbInstanceNo.Text);
@@ -164,7 +168,7 @@ namespace DMS
             Task<string> result = asyncCall.WebApiCall(
                 endpointUrl
                 , GetPostType.GET
-                , @"/clouddb/v1/" + config.GetEnumValue(Category.Config, Key.DefaultTestApi) + "?dbKindCode=MSSQL&responseFormatType=json"
+                , @"/clouddb/v2/" + config.GetEnumValue(Category.Config, Key.DefaultTestApi) + "?dbKindCode=MSSQL&responseFormatType=json"
                 , postParams);
 
             string json = await result;
@@ -196,7 +200,7 @@ namespace DMS
             Task<string> result = asyncCall.WebApiCall(
                 apiEndpointUrl
                 , GetPostType.POST
-                , @"/clouddb/v1/setObjectStorageInfo"
+                , @"/clouddb/v2/setObjectStorageInfo"
                 , postParams);
 
             string json = await result;
@@ -285,7 +289,7 @@ namespace DMS
                 Task<string> result = asyncCall.WebApiCall(
                     endpointUrl
                     , GetPostType.POST
-                    , @"/clouddb/v1/getCloudDBInstanceList"
+                    , @"/clouddb/v2/getCloudDBInstanceList"
                     , postParams);
 
                 json = await result;
@@ -318,7 +322,7 @@ namespace DMS
                 Task<string> result = asyncCall.WebApiCall(
                     endpointUrl
                     , GetPostType.POST
-                    , "/server/v1/getZoneList"
+                    , "/server/v2/getZoneList"
                     , postParams);
 
                 json = await result;

@@ -16,6 +16,11 @@ namespace DMS
 {
     public partial class RestoreDatabase : UserControl
     {
+        private static readonly Lazy<RestoreDatabase> lazy =
+            new Lazy<RestoreDatabase>(() => new RestoreDatabase(), LazyThreadSafetyMode.ExecutionAndPublication);
+
+        public static RestoreDatabase Instance { get { return lazy.Value; } }
+        
         Config config;
         ObjectStorage objectStorage;
         private static Logger nlog = LogManager.GetCurrentClassLogger();
@@ -23,7 +28,7 @@ namespace DMS
         Dictionary<Tuple<string, string, string>, Response> apiResponseTemp = new Dictionary<Tuple<string, string, string>, Response>();
         public event EventHandler<StatusEventArgs> StatusChangeEvent;
         private bool workBackupStorage = false; 
-        public RestoreDatabase()
+        private RestoreDatabase()
         {
             InitializeComponent();
             dgvBackupStorage.RowHeadersVisible = false;
@@ -142,7 +147,7 @@ namespace DMS
                             Task<string> result = asyncCall.WebApiCall(
                                 endpointUrl
                                 , GetPostType.POST
-                                , @"/clouddb/v1/restoreDmsDatabase"
+                                , @"/clouddb/v2/restoreDmsDatabase"
                                 , postParams);
 
                             json = await result;
@@ -313,7 +318,7 @@ namespace DMS
                 Task<string> result = asyncCall.WebApiCall(
                     endpointUrl
                     , GetPostType.POST
-                    , @"/clouddb/v1/getObjectStorageBackupList"
+                    , @"/clouddb/v2/getObjectStorageBackupList"
                     , postParams);
 
                 json = await result;
@@ -351,7 +356,7 @@ namespace DMS
                     Task<string> result = asyncCall.WebApiCall(
                         endpointUrl
                         , GetPostType.POST
-                        , @"/clouddb/v1/getDmsOperation"
+                        , @"/clouddb/v2/getDmsOperation"
                         , postParams);
 
                     json = await result;
@@ -445,7 +450,7 @@ namespace DMS
                             Task<string> result = asyncCall.WebApiCall(
                                 endpointUrl
                                 , GetPostType.POST
-                                , @"/clouddb/v1/restoreDmsTransactionLog"
+                                , @"/clouddb/v2/restoreDmsTransactionLog"
                                 , postParams);
 
                             json = await result;

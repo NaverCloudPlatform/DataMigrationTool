@@ -16,6 +16,10 @@ namespace DMS
 {
     public partial class DownloadInternal2Object : UserControl
     {
+        private static readonly Lazy<DownloadInternal2Object> lazy =
+            new Lazy<DownloadInternal2Object>(() => new DownloadInternal2Object(), LazyThreadSafetyMode.ExecutionAndPublication);
+
+        public static DownloadInternal2Object Instance { get { return lazy.Value; } }
         
         Config config;
         ObjectStorage objectStorage;
@@ -24,7 +28,7 @@ namespace DMS
         private bool workInternalStorage = false;
         private bool workObjectStorage = false; 
        
-        public DownloadInternal2Object()
+        private DownloadInternal2Object()
         {
             InitializeComponent();
             dgvInternalStorage.RowHeadersVisible = false;
@@ -72,7 +76,7 @@ namespace DMS
                     endpointUrl = endpointUrl + config.GetEnumValue(Category.Config, Key.ApiUrl);
 
                     Task<string> result = asyncCall.WebApiCall(
-                        endpointUrl, GetPostType.POST, @"/clouddb/v1/uploadDmsFile", postParams);
+                        endpointUrl, GetPostType.POST, @"/clouddb/v2/uploadDmsFile", postParams);
                     json = await result;
                     nlog.Warn(json);
                 }
@@ -276,7 +280,7 @@ namespace DMS
                 Task<string> result = asyncCall.WebApiCall(
                     endpointUrl
                     , GetPostType.POST
-                    , @"/clouddb/v1/getBackupList"
+                    , @"/clouddb/v2/getBackupList"
                     , postParams);
 
                 json = await result;

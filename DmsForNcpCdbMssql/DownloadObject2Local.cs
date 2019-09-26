@@ -17,15 +17,19 @@ namespace DMS
 
     public partial class DownloadObject2Local : UserControl
     {
+        private static readonly Lazy<DownloadObject2Local> lazy =
+            new Lazy<DownloadObject2Local>(() => new DownloadObject2Local(), LazyThreadSafetyMode.ExecutionAndPublication);
+
+        public static DownloadObject2Local Instance { get { return lazy.Value; } }
+
         Config config;
         ObjectStorage objectStorage;
         private static Logger nlog = LogManager.GetCurrentClassLogger();
         public event EventHandler<StatusEventArgs> StatusChangeEvent;
         private bool workObjectStorage = false;
         private bool workLocalStorage = false;
-
-
-        public DownloadObject2Local()
+        
+        private DownloadObject2Local()
         {
             InitializeComponent();
             dgvObjectStorage.RowHeadersVisible = false;

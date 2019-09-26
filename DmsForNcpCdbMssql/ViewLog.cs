@@ -9,16 +9,22 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using NLog;
+using System.Threading;
 
 namespace DMS
 {
     public partial class ViewLog : UserControl
     {
+        private static readonly Lazy<ViewLog> lazy =
+            new Lazy<ViewLog>(() => new ViewLog(), LazyThreadSafetyMode.ExecutionAndPublication);
+
+        public static ViewLog Instance { get { return lazy.Value; } }
+
         Config config;
         private static Logger nlog = LogManager.GetCurrentClassLogger();
         public event EventHandler<StatusEventArgs> StatusChangeEvent;
         private bool workViewLog = false; 
-        public ViewLog()
+        private ViewLog()
         {
             InitializeComponent();
             config = Config.Instance;
