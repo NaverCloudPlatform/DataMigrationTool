@@ -25,7 +25,6 @@ namespace DMS
         {
             InitializeComponent();
             nlog.Warn("DMS App Started");
-            //configuration.BringToFront();
             panelLeft.Height = buttonConfiguration.Height;
             panelLeft.Top = buttonConfiguration.Top;
             clearSubjectRegular();
@@ -34,12 +33,6 @@ namespace DMS
 
             config = Config.Instance;
             
-            //uploadLocal2Object.StatusChangeEvent += UpdateBottomStatusText;
-            //uploadObject2Internal.StatusChangeEvent += UpdateBottomStatusText;
-            //restoreDatabase.StatusChangeEvent += UpdateBottomStatusText;
-            //viewLog.StatusChangeEvent += UpdateBottomStatusText;
-            //downloadInternal2Object.StatusChangeEvent += UpdateBottomStatusText;
-            //downloadObject2Local.StatusChangeEvent += UpdateBottomStatusText;
             GenerateCounter();
             labelVersion.Text = string.Format("DMS Version : {0}", Application.ProductVersion);
             timer.Start();

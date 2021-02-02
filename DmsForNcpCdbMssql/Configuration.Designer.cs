@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.panelObjectStorageInfo = new System.Windows.Forms.Panel();
+            this.groupBoxObjectStorageInfo = new System.Windows.Forms.GroupBox();
             this.textObjectEndPoint = new System.Windows.Forms.TextBox();
             this.buttonConnectionTest = new System.Windows.Forms.Button();
-            this.label17 = new System.Windows.Forms.Label();
+            this.labelObjectStorageDesc = new System.Windows.Forms.Label();
             this.labelBucket = new System.Windows.Forms.Label();
             this.textDefaultBucket = new System.Windows.Forms.TextBox();
             this.textObjectSecretKey = new System.Windows.Forms.TextBox();
@@ -43,10 +43,10 @@
             this.labelObjectEndPoint = new System.Windows.Forms.Label();
             this.checkSSLObjectStorage = new System.Windows.Forms.CheckBox();
             this.textBoxEndPointLable = new System.Windows.Forms.TextBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.panelApiGatewayInfo = new System.Windows.Forms.Panel();
+            this.groupBoxApiGatewayInfo = new System.Windows.Forms.GroupBox();
             this.textBoxAPIEndPointLable = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
+            this.labelApiGateWayDesc = new System.Windows.Forms.Label();
             this.textApiUrl = new System.Windows.Forms.TextBox();
             this.buttonApiGatewayTest = new System.Windows.Forms.Button();
             this.labelDefaultApi = new System.Windows.Forms.Label();
@@ -57,55 +57,55 @@
             this.labelAccessKey = new System.Windows.Forms.Label();
             this.labelEndPoint = new System.Windows.Forms.Label();
             this.checkSSLApiGateway = new System.Windows.Forms.CheckBox();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.groupDatabaseServer = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
+            this.PanelDatabaseInfo = new System.Windows.Forms.Panel();
+            this.groupDatabaseServerInfo = new System.Windows.Forms.GroupBox();
+            this.buttonDatabaseConnectionTest = new System.Windows.Forms.Button();
+            this.labelDatabaseInstanceNoDesciption = new System.Windows.Forms.Label();
             this.labelDbServerInstanceNo = new System.Windows.Forms.Label();
             this.textCloudDbInstanceNo = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonApiGatewayConnectionTest = new System.Windows.Forms.Button();
             this.buttonSaveDmsInfo = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.panel1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.groupDatabaseServer.SuspendLayout();
+            this.panelObjectStorageInfo.SuspendLayout();
+            this.groupBoxObjectStorageInfo.SuspendLayout();
+            this.panelApiGatewayInfo.SuspendLayout();
+            this.groupBoxApiGatewayInfo.SuspendLayout();
+            this.PanelDatabaseInfo.SuspendLayout();
+            this.groupDatabaseServerInfo.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // panelObjectStorageInfo
             // 
-            this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(822, 234);
-            this.panel1.TabIndex = 0;
+            this.panelObjectStorageInfo.Controls.Add(this.groupBoxObjectStorageInfo);
+            this.panelObjectStorageInfo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelObjectStorageInfo.Location = new System.Drawing.Point(0, 0);
+            this.panelObjectStorageInfo.Name = "panelObjectStorageInfo";
+            this.panelObjectStorageInfo.Size = new System.Drawing.Size(822, 234);
+            this.panelObjectStorageInfo.TabIndex = 0;
             // 
-            // groupBox1
+            // groupBoxObjectStorageInfo
             // 
-            this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox1.Controls.Add(this.textObjectEndPoint);
-            this.groupBox1.Controls.Add(this.buttonConnectionTest);
-            this.groupBox1.Controls.Add(this.label17);
-            this.groupBox1.Controls.Add(this.labelBucket);
-            this.groupBox1.Controls.Add(this.textDefaultBucket);
-            this.groupBox1.Controls.Add(this.textObjectSecretKey);
-            this.groupBox1.Controls.Add(this.labelObjectSecretkey);
-            this.groupBox1.Controls.Add(this.textObjectAccessKey);
-            this.groupBox1.Controls.Add(this.labelObjectAccesskey);
-            this.groupBox1.Controls.Add(this.labelObjectEndPoint);
-            this.groupBox1.Controls.Add(this.checkSSLObjectStorage);
-            this.groupBox1.Controls.Add(this.textBoxEndPointLable);
-            this.groupBox1.Font = new System.Drawing.Font("Consolas", 9F);
-            this.groupBox1.Location = new System.Drawing.Point(3, 16);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(816, 212);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "[Target Object Storage Info]";
+            this.groupBoxObjectStorageInfo.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBoxObjectStorageInfo.Controls.Add(this.textObjectEndPoint);
+            this.groupBoxObjectStorageInfo.Controls.Add(this.buttonConnectionTest);
+            this.groupBoxObjectStorageInfo.Controls.Add(this.labelObjectStorageDesc);
+            this.groupBoxObjectStorageInfo.Controls.Add(this.labelBucket);
+            this.groupBoxObjectStorageInfo.Controls.Add(this.textDefaultBucket);
+            this.groupBoxObjectStorageInfo.Controls.Add(this.textObjectSecretKey);
+            this.groupBoxObjectStorageInfo.Controls.Add(this.labelObjectSecretkey);
+            this.groupBoxObjectStorageInfo.Controls.Add(this.textObjectAccessKey);
+            this.groupBoxObjectStorageInfo.Controls.Add(this.labelObjectAccesskey);
+            this.groupBoxObjectStorageInfo.Controls.Add(this.labelObjectEndPoint);
+            this.groupBoxObjectStorageInfo.Controls.Add(this.checkSSLObjectStorage);
+            this.groupBoxObjectStorageInfo.Controls.Add(this.textBoxEndPointLable);
+            this.groupBoxObjectStorageInfo.Font = new System.Drawing.Font("Consolas", 9F);
+            this.groupBoxObjectStorageInfo.Location = new System.Drawing.Point(3, 16);
+            this.groupBoxObjectStorageInfo.Name = "groupBoxObjectStorageInfo";
+            this.groupBoxObjectStorageInfo.Size = new System.Drawing.Size(816, 212);
+            this.groupBoxObjectStorageInfo.TabIndex = 0;
+            this.groupBoxObjectStorageInfo.TabStop = false;
+            this.groupBoxObjectStorageInfo.Text = "[Target Object Storage Info]";
             // 
             // textObjectEndPoint
             // 
@@ -130,16 +130,16 @@
             this.buttonConnectionTest.UseVisualStyleBackColor = false;
             this.buttonConnectionTest.Click += new System.EventHandler(this.buttonConnectionTest_Click);
             // 
-            // label17
+            // labelObjectStorageDesc
             // 
-            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Consolas", 8F);
-            this.label17.Location = new System.Drawing.Point(465, 155);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(337, 13);
-            this.label17.TabIndex = 24;
-            this.label17.Text = "Potal > MyPage > Manage Authentication Key OR Amazon S3";
+            this.labelObjectStorageDesc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelObjectStorageDesc.AutoSize = true;
+            this.labelObjectStorageDesc.Font = new System.Drawing.Font("Consolas", 8F);
+            this.labelObjectStorageDesc.Location = new System.Drawing.Point(465, 155);
+            this.labelObjectStorageDesc.Name = "labelObjectStorageDesc";
+            this.labelObjectStorageDesc.Size = new System.Drawing.Size(337, 13);
+            this.labelObjectStorageDesc.TabIndex = 24;
+            this.labelObjectStorageDesc.Text = "Potal > MyPage > Manage Authentication Key OR Amazon S3";
             // 
             // labelBucket
             // 
@@ -223,37 +223,37 @@
             this.textBoxEndPointLable.TabIndex = 26;
             this.textBoxEndPointLable.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // panel2
+            // panelApiGatewayInfo
             // 
-            this.panel2.Controls.Add(this.groupBox2);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 234);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(822, 248);
-            this.panel2.TabIndex = 1;
+            this.panelApiGatewayInfo.Controls.Add(this.groupBoxApiGatewayInfo);
+            this.panelApiGatewayInfo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelApiGatewayInfo.Location = new System.Drawing.Point(0, 234);
+            this.panelApiGatewayInfo.Name = "panelApiGatewayInfo";
+            this.panelApiGatewayInfo.Size = new System.Drawing.Size(822, 248);
+            this.panelApiGatewayInfo.TabIndex = 1;
             // 
-            // groupBox2
+            // groupBoxApiGatewayInfo
             // 
-            this.groupBox2.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox2.Controls.Add(this.textBoxAPIEndPointLable);
-            this.groupBox2.Controls.Add(this.label16);
-            this.groupBox2.Controls.Add(this.textApiUrl);
-            this.groupBox2.Controls.Add(this.buttonApiGatewayTest);
-            this.groupBox2.Controls.Add(this.labelDefaultApi);
-            this.groupBox2.Controls.Add(this.textDefaultTestApi);
-            this.groupBox2.Controls.Add(this.textApiGatewaySecretKey);
-            this.groupBox2.Controls.Add(this.labelSecretKey);
-            this.groupBox2.Controls.Add(this.textApiGatewayAccessKey);
-            this.groupBox2.Controls.Add(this.labelAccessKey);
-            this.groupBox2.Controls.Add(this.labelEndPoint);
-            this.groupBox2.Controls.Add(this.checkSSLApiGateway);
-            this.groupBox2.Font = new System.Drawing.Font("Consolas", 9F);
-            this.groupBox2.Location = new System.Drawing.Point(3, 6);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(816, 233);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "[ApiGateway Info]";
+            this.groupBoxApiGatewayInfo.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBoxApiGatewayInfo.Controls.Add(this.textBoxAPIEndPointLable);
+            this.groupBoxApiGatewayInfo.Controls.Add(this.labelApiGateWayDesc);
+            this.groupBoxApiGatewayInfo.Controls.Add(this.textApiUrl);
+            this.groupBoxApiGatewayInfo.Controls.Add(this.buttonApiGatewayTest);
+            this.groupBoxApiGatewayInfo.Controls.Add(this.labelDefaultApi);
+            this.groupBoxApiGatewayInfo.Controls.Add(this.textDefaultTestApi);
+            this.groupBoxApiGatewayInfo.Controls.Add(this.textApiGatewaySecretKey);
+            this.groupBoxApiGatewayInfo.Controls.Add(this.labelSecretKey);
+            this.groupBoxApiGatewayInfo.Controls.Add(this.textApiGatewayAccessKey);
+            this.groupBoxApiGatewayInfo.Controls.Add(this.labelAccessKey);
+            this.groupBoxApiGatewayInfo.Controls.Add(this.labelEndPoint);
+            this.groupBoxApiGatewayInfo.Controls.Add(this.checkSSLApiGateway);
+            this.groupBoxApiGatewayInfo.Font = new System.Drawing.Font("Consolas", 9F);
+            this.groupBoxApiGatewayInfo.Location = new System.Drawing.Point(3, 6);
+            this.groupBoxApiGatewayInfo.Name = "groupBoxApiGatewayInfo";
+            this.groupBoxApiGatewayInfo.Size = new System.Drawing.Size(816, 233);
+            this.groupBoxApiGatewayInfo.TabIndex = 1;
+            this.groupBoxApiGatewayInfo.TabStop = false;
+            this.groupBoxApiGatewayInfo.Text = "[ApiGateway Info]";
             // 
             // textBoxAPIEndPointLable
             // 
@@ -264,16 +264,16 @@
             this.textBoxAPIEndPointLable.TabIndex = 27;
             this.textBoxAPIEndPointLable.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // label16
+            // labelApiGateWayDesc
             // 
-            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Consolas", 8F);
-            this.label16.Location = new System.Drawing.Point(549, 132);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(259, 13);
-            this.label16.TabIndex = 30;
-            this.label16.Text = "Potal > MyPage > Manage Authentication Key";
+            this.labelApiGateWayDesc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelApiGateWayDesc.AutoSize = true;
+            this.labelApiGateWayDesc.Font = new System.Drawing.Font("Consolas", 8F);
+            this.labelApiGateWayDesc.Location = new System.Drawing.Point(549, 132);
+            this.labelApiGateWayDesc.Name = "labelApiGateWayDesc";
+            this.labelApiGateWayDesc.Size = new System.Drawing.Size(259, 13);
+            this.labelApiGateWayDesc.TabIndex = 30;
+            this.labelApiGateWayDesc.Text = "Potal > MyPage > Manage Authentication Key";
             // 
             // textApiUrl
             // 
@@ -375,58 +375,58 @@
             this.checkSSLApiGateway.Text = "Use Secure transfer (SSL/TLS)";
             this.checkSSLApiGateway.UseVisualStyleBackColor = true;
             // 
-            // panel3
+            // PanelDatabaseInfo
             // 
-            this.panel3.Controls.Add(this.groupDatabaseServer);
-            this.panel3.Controls.Add(this.buttonSaveDmsInfo);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 482);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(822, 146);
-            this.panel3.TabIndex = 2;
+            this.PanelDatabaseInfo.Controls.Add(this.groupDatabaseServerInfo);
+            this.PanelDatabaseInfo.Controls.Add(this.buttonSaveDmsInfo);
+            this.PanelDatabaseInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelDatabaseInfo.Location = new System.Drawing.Point(0, 482);
+            this.PanelDatabaseInfo.Name = "PanelDatabaseInfo";
+            this.PanelDatabaseInfo.Size = new System.Drawing.Size(822, 146);
+            this.PanelDatabaseInfo.TabIndex = 2;
             // 
-            // groupDatabaseServer
+            // groupDatabaseServerInfo
             // 
-            this.groupDatabaseServer.BackColor = System.Drawing.SystemColors.Control;
-            this.groupDatabaseServer.Controls.Add(this.button2);
-            this.groupDatabaseServer.Controls.Add(this.label11);
-            this.groupDatabaseServer.Controls.Add(this.labelDbServerInstanceNo);
-            this.groupDatabaseServer.Controls.Add(this.textCloudDbInstanceNo);
-            this.groupDatabaseServer.Controls.Add(this.button1);
-            this.groupDatabaseServer.Font = new System.Drawing.Font("Consolas", 9F);
-            this.groupDatabaseServer.Location = new System.Drawing.Point(3, 3);
-            this.groupDatabaseServer.Name = "groupDatabaseServer";
-            this.groupDatabaseServer.Size = new System.Drawing.Size(816, 109);
-            this.groupDatabaseServer.TabIndex = 32;
-            this.groupDatabaseServer.TabStop = false;
-            this.groupDatabaseServer.Text = "[Database Info]";
+            this.groupDatabaseServerInfo.BackColor = System.Drawing.SystemColors.Control;
+            this.groupDatabaseServerInfo.Controls.Add(this.buttonDatabaseConnectionTest);
+            this.groupDatabaseServerInfo.Controls.Add(this.labelDatabaseInstanceNoDesciption);
+            this.groupDatabaseServerInfo.Controls.Add(this.labelDbServerInstanceNo);
+            this.groupDatabaseServerInfo.Controls.Add(this.textCloudDbInstanceNo);
+            this.groupDatabaseServerInfo.Controls.Add(this.buttonApiGatewayConnectionTest);
+            this.groupDatabaseServerInfo.Font = new System.Drawing.Font("Consolas", 9F);
+            this.groupDatabaseServerInfo.Location = new System.Drawing.Point(3, 3);
+            this.groupDatabaseServerInfo.Name = "groupDatabaseServerInfo";
+            this.groupDatabaseServerInfo.Size = new System.Drawing.Size(816, 109);
+            this.groupDatabaseServerInfo.TabIndex = 32;
+            this.groupDatabaseServerInfo.TabStop = false;
+            this.groupDatabaseServerInfo.Text = "[Database Info]";
             // 
-            // button2
+            // buttonDatabaseConnectionTest
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(55)))), ((int)(((byte)(70)))));
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(671, 75);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(137, 23);
-            this.button2.TabIndex = 31;
-            this.button2.Text = "Connection Test";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.buttonDbServerExistsCheck_Click);
+            this.buttonDatabaseConnectionTest.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(55)))), ((int)(((byte)(70)))));
+            this.buttonDatabaseConnectionTest.FlatAppearance.BorderSize = 0;
+            this.buttonDatabaseConnectionTest.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.buttonDatabaseConnectionTest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDatabaseConnectionTest.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonDatabaseConnectionTest.ForeColor = System.Drawing.Color.White;
+            this.buttonDatabaseConnectionTest.Location = new System.Drawing.Point(671, 75);
+            this.buttonDatabaseConnectionTest.Name = "buttonDatabaseConnectionTest";
+            this.buttonDatabaseConnectionTest.Size = new System.Drawing.Size(137, 23);
+            this.buttonDatabaseConnectionTest.TabIndex = 31;
+            this.buttonDatabaseConnectionTest.Text = "Connection Test";
+            this.buttonDatabaseConnectionTest.UseVisualStyleBackColor = false;
+            this.buttonDatabaseConnectionTest.Click += new System.EventHandler(this.buttonDbServerExistsCheck_Click);
             // 
-            // label11
+            // labelDatabaseInstanceNoDesciption
             // 
-            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(493, 50);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(313, 13);
-            this.label11.TabIndex = 27;
-            this.label11.Text = "If m-986706-001 is the DB Server name, enter 986706";
+            this.labelDatabaseInstanceNoDesciption.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelDatabaseInstanceNoDesciption.AutoSize = true;
+            this.labelDatabaseInstanceNoDesciption.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDatabaseInstanceNoDesciption.Location = new System.Drawing.Point(493, 50);
+            this.labelDatabaseInstanceNoDesciption.Name = "labelDatabaseInstanceNoDesciption";
+            this.labelDatabaseInstanceNoDesciption.Size = new System.Drawing.Size(313, 13);
+            this.labelDatabaseInstanceNoDesciption.TabIndex = 27;
+            this.labelDatabaseInstanceNoDesciption.Text = "If m-986706-001 is the DB Server name, enter 986706";
             // 
             // labelDbServerInstanceNo
             // 
@@ -445,20 +445,20 @@
             this.textCloudDbInstanceNo.Size = new System.Drawing.Size(553, 22);
             this.textCloudDbInstanceNo.TabIndex = 25;
             // 
-            // button1
+            // buttonApiGatewayConnectionTest
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(38)))));
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.LightGray;
-            this.button1.Location = new System.Drawing.Point(671, 241);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(137, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Connection Test";
-            this.button1.UseVisualStyleBackColor = false;
+            this.buttonApiGatewayConnectionTest.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(38)))));
+            this.buttonApiGatewayConnectionTest.FlatAppearance.BorderSize = 0;
+            this.buttonApiGatewayConnectionTest.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.buttonApiGatewayConnectionTest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonApiGatewayConnectionTest.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonApiGatewayConnectionTest.ForeColor = System.Drawing.Color.LightGray;
+            this.buttonApiGatewayConnectionTest.Location = new System.Drawing.Point(671, 241);
+            this.buttonApiGatewayConnectionTest.Name = "buttonApiGatewayConnectionTest";
+            this.buttonApiGatewayConnectionTest.Size = new System.Drawing.Size(137, 23);
+            this.buttonApiGatewayConnectionTest.TabIndex = 2;
+            this.buttonApiGatewayConnectionTest.Text = "Connection Test";
+            this.buttonApiGatewayConnectionTest.UseVisualStyleBackColor = false;
             // 
             // buttonSaveDmsInfo
             // 
@@ -489,40 +489,40 @@
             // Configuration
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.PanelDatabaseInfo);
+            this.Controls.Add(this.panelApiGatewayInfo);
+            this.Controls.Add(this.panelObjectStorageInfo);
             this.DoubleBuffered = true;
             this.Name = "Configuration";
             this.Size = new System.Drawing.Size(822, 628);
-            this.panel1.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.groupDatabaseServer.ResumeLayout(false);
-            this.groupDatabaseServer.PerformLayout();
+            this.panelObjectStorageInfo.ResumeLayout(false);
+            this.groupBoxObjectStorageInfo.ResumeLayout(false);
+            this.groupBoxObjectStorageInfo.PerformLayout();
+            this.panelApiGatewayInfo.ResumeLayout(false);
+            this.groupBoxApiGatewayInfo.ResumeLayout(false);
+            this.groupBoxApiGatewayInfo.PerformLayout();
+            this.PanelDatabaseInfo.ResumeLayout(false);
+            this.groupDatabaseServerInfo.ResumeLayout(false);
+            this.groupDatabaseServerInfo.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Panel panelObjectStorageInfo;
+        private System.Windows.Forms.Panel panelApiGatewayInfo;
+        private System.Windows.Forms.Panel PanelDatabaseInfo;
+        private System.Windows.Forms.GroupBox groupBoxObjectStorageInfo;
         private System.Windows.Forms.Label labelObjectEndPoint;
-        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label labelObjectStorageDesc;
         private System.Windows.Forms.Label labelBucket;
         private System.Windows.Forms.TextBox textDefaultBucket;
         private System.Windows.Forms.TextBox textObjectSecretKey;
         private System.Windows.Forms.Label labelObjectSecretkey;
         private System.Windows.Forms.Label labelObjectAccesskey;
         private System.Windows.Forms.Button buttonConnectionTest;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBoxApiGatewayInfo;
         private System.Windows.Forms.TextBox textApiUrl;
         private System.Windows.Forms.Button buttonApiGatewayTest;
         private System.Windows.Forms.Label labelDefaultApi;
@@ -533,17 +533,17 @@
         private System.Windows.Forms.Label labelAccessKey;
         private System.Windows.Forms.Label labelEndPoint;
         private System.Windows.Forms.CheckBox checkSSLApiGateway;
-        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label labelApiGateWayDesc;
         private System.Windows.Forms.Button buttonSaveDmsInfo;
         public System.Windows.Forms.CheckBox checkSSLObjectStorage;
         public System.Windows.Forms.TextBox textObjectAccessKey;
         public System.Windows.Forms.TextBox textObjectEndPoint;
-        private System.Windows.Forms.GroupBox groupDatabaseServer;
+        private System.Windows.Forms.GroupBox groupDatabaseServerInfo;
         private System.Windows.Forms.TextBox textCloudDbInstanceNo;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonApiGatewayConnectionTest;
         private System.Windows.Forms.Label labelDbServerInstanceNo;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label labelDatabaseInstanceNoDesciption;
+        private System.Windows.Forms.Button buttonDatabaseConnectionTest;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.TextBox textBoxEndPointLable;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;

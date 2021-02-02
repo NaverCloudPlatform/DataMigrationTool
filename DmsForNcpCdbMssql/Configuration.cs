@@ -135,7 +135,6 @@ namespace DMS
             config.SetEnumValue(Category.Config, Key.ApiUrl, textApiUrl.Text);
             config.SetEnumValue(Category.Config, Key.ApiGatewayAccessKey, textApiGatewayAccessKey.Text);
             config.SetEnumValue(Category.Config, Key.ApiGatewaySecretKey, textApiGatewaySecretKey.Text);
-            //config.SetEnumValue(Category.Config, Key.ApiGatewayKey, textApiGatewayKey.Text);
             config.SetEnumValue(Category.Config, Key.UseSSLApiGateway, checkSSLApiGateway.CheckState == CheckState.Checked ? "1" : "0");
             config.SetEnumValue(Category.Config, Key.DefaultTestApi, textDefaultTestApi.Text);
             config.SetEnumValue(Category.Config, Key.CloudDbInstanceNo, textCloudDbInstanceNo.Text);
