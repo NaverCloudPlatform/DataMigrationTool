@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
 using NLog;
-
+using DMS.General;
 
 namespace DMS
 {
@@ -32,10 +32,8 @@ namespace DMS
         private UploadLocal2Object()
         {
             InitializeComponent();
-            dgvLocalDrive.RowHeadersVisible = false;
-            dgvLocalDrive.BackgroundColor = Color.White;
-            dgvObjectStorage.RowHeadersVisible = false;
-            dgvObjectStorage.BackgroundColor = Color.White;
+            GFunctions.ColumSizeFix(dgvLocalDrive);
+            GFunctions.ColumSizeFix(dgvObjectStorage);
             config = Config.Instance;
             objectStorage = ObjectStorage.Instance;
             WriteConfig2TextBox();
@@ -51,7 +49,7 @@ namespace DMS
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (workLocalStorage | workObjectStorage)
+                if (workLocalStorage || workObjectStorage)
                     return;
                 ObjectStorageFileList();
                 loadLocalDriveFileList();
@@ -93,7 +91,7 @@ namespace DMS
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            if (workLocalStorage | workObjectStorage)
+            if (workLocalStorage || workObjectStorage)
                 return;
             ConfigSaveAllItem();
             loadLocalDriveFileList();
@@ -113,25 +111,33 @@ namespace DMS
             StatusUpdate(Status.Working);
             try
             {
-                DirectoryInfo d = new DirectoryInfo(textLocalFolder.Text);
-                FileInfo[] files = d.GetFiles("*" + textFilterString.Text + "*");
-                long uiRefresh = 0;
-                dgvLocalDrive.InvokeIfRequired(s => {
-                    s.Rows.Clear();
-                    s.RowHeadersVisible = false;
-                    s.BackgroundColor = Color.White;
-
-                    foreach (FileInfo file in files)
+                if (Directory.Exists(textLocalFolder.Text))
+                {
+                    DirectoryInfo d = new DirectoryInfo(textLocalFolder.Text);
+                    FileInfo[] files = d.GetFiles("*" + textFilterString.Text + "*");
+                    long uiRefresh = 0;
+                    dgvLocalDrive.InvokeIfRequired(s =>
                     {
-                        int n = s.Rows.Add();
-                        s.Rows[n].Cells[0].Value = "false";
-                        s.Rows[n].Cells[1].Value = file.Name;
-                        s.Rows[n].Cells[2].Value = file.Length;
-                        s.Rows[n].Cells[3].Value = String.Format("{0:yyyy-MM-dd HH:mm:ss}", file.LastWriteTime);
-                        if (uiRefresh % 100 == 0) StatusUpdate(Status.Working);
-                        uiRefresh++;
-                    }
-                });
+                        s.Rows.Clear();
+                        s.RowHeadersVisible = false;
+                        s.BackgroundColor = Color.White;
+
+                        foreach (FileInfo file in files)
+                        {
+                            int n = s.Rows.Add();
+                            s.Rows[n].Cells[0].Value = "false";
+                            s.Rows[n].Cells[1].Value = file.Name;
+                            s.Rows[n].Cells[2].Value = file.Length;
+                            s.Rows[n].Cells[3].Value = String.Format("{0:yyyy-MM-dd HH:mm:ss}", file.LastWriteTime);
+                            if (uiRefresh % 100 == 0) StatusUpdate(Status.Working);
+                            uiRefresh++;
+                        }
+                    });
+                }
+                else
+                {
+                    MessageBox.Show("Directory does not exists!");
+                }
                 
             }
             catch (Exception ex)

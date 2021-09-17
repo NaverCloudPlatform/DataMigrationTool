@@ -41,7 +41,7 @@ namespace DMS
                     client.DefaultRequestHeaders.Add("x-ncp-apigw-timestamp", timestamp);
                     //client.DefaultRequestHeaders.Add("x-ncp-apigw-api-key", apiKey);
                     client.DefaultRequestHeaders.Add("x-ncp-iam-access-key", accessKey);
-                    client.DefaultRequestHeaders.Add("x-ncp-apigw-signature-v1", sig);
+                    client.DefaultRequestHeaders.Add("x-ncp-apigw-signature-v2", sig);
 
                     if (calltype == GetPostType.POST)
                     {

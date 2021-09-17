@@ -14,12 +14,12 @@ using DMS.General;
 
 namespace DMS
 {
-    public partial class DownloadInternal2Object : UserControl
+    public partial class DownloadInternal2ObjectVP : UserControl
     {
-        private static readonly Lazy<DownloadInternal2Object> lazy =
-            new Lazy<DownloadInternal2Object>(() => new DownloadInternal2Object(), LazyThreadSafetyMode.ExecutionAndPublication);
+        private static readonly Lazy<DownloadInternal2ObjectVP> lazy =
+            new Lazy<DownloadInternal2ObjectVP>(() => new DownloadInternal2ObjectVP(), LazyThreadSafetyMode.ExecutionAndPublication);
 
-        public static DownloadInternal2Object Instance { get { return lazy.Value; } }
+        public static DownloadInternal2ObjectVP Instance { get { return lazy.Value; } }
         
         Config config;
         ObjectStorage objectStorage;
@@ -28,7 +28,7 @@ namespace DMS
         private bool workInternalStorage = false;
         private bool workObjectStorage = false; 
        
-        private DownloadInternal2Object()
+        private DownloadInternal2ObjectVP()
         {
             InitializeComponent();
             GFunctions.ColumSizeFix(dgvInternalStorage);
@@ -67,14 +67,14 @@ namespace DMS
                 {
                     var postParams = new List<KeyValuePair<string, string>>();
                     AsyncCall asyncCall = new AsyncCall();
-                    postParams.Add(new KeyValuePair<string, string>("cloudDBInstanceNo", config.GetEnumValue(Category.Config, Key.CloudDbInstanceNo)));
+                    postParams.Add(new KeyValuePair<string, string>("cloudMssqlInstanceNo", config.GetEnumValue(Category.Config, Key.CloudDbInstanceNo)));
                     postParams.Add(new KeyValuePair<string, string>("fileName", item.Cells[1].EditedFormattedValue.ToString()));
                     postParams.Add(new KeyValuePair<string, string>("responseFormatType", "json"));
                     string endpointUrl = config.GetEnumValue(Category.Config, Key.UseSSLApiGateway) == "1" ? @"https://" : @"http://";
                     endpointUrl = endpointUrl + config.GetEnumValue(Category.Config, Key.ApiUrl);
 
                     Task<string> result = asyncCall.WebApiCall(
-                        endpointUrl, GetPostType.POST, @"/clouddb/v2/uploadDmsFile", postParams);
+                        endpointUrl, GetPostType.POST, @"/vmssql/v2/uploadDmsFile", postParams);
                     json = await result;
                     nlog.Warn(json);
                 }
@@ -218,8 +218,8 @@ namespace DMS
                 if (getBackupListResult.Contains("server does not exists"))
                     throw new Exception("There is no corresponding server. Perform the Configuration steps again.");
 
-                getBackupList getBackupList = JsonConvert.DeserializeObject<getBackupList>(getBackupListResult, settings);
-                List<backupFileList> files = getBackupList.getBackupListResponse.backupFileList;
+                getDmsBackupList getDmsBackupList = JsonConvert.DeserializeObject<getDmsBackupList>(getBackupListResult, settings);
+                List<backupFileVP> files = getDmsBackupList.getDmsBackupListResponse.backupFileList;
                 long uiRefresh = 0;
                 foreach (var file in files)
                 {
@@ -243,8 +243,9 @@ namespace DMS
                             int n = s.Rows.Add();
                             s.Rows[n].Cells[0].Value = "false";
                             s.Rows[n].Cells[1].Value = file.fileName;
-                            s.Rows[n].Cells[2].Value = file.backupType.code;
-                            s.Rows[n].Cells[3].Value = String.Format("{0:yyyy-MM-dd HH:mm:ss}", System.DateTime.Parse(file.backupEndTime));
+                            s.Rows[n].Cells[2].Value = file.fileSize;
+                            s.Rows[n].Cells[3].Value = file.backupType.code;
+                            s.Rows[n].Cells[4].Value = String.Format("{0:yyyy-MM-dd HH:mm:ss}", System.DateTime.Parse(file.endTime));
                         });
                         if (uiRefresh % 100 == 0) StatusUpdate(Status.Working);
                         uiRefresh++;
@@ -273,7 +274,7 @@ namespace DMS
             {
                 var postParams = new List<KeyValuePair<string, string>>();
                 AsyncCall asyncCall = new AsyncCall();
-                postParams.Add(new KeyValuePair<string, string>("cloudDBInstanceNo", config.GetEnumValue(Category.Config, Key.CloudDbInstanceNo)));
+                postParams.Add(new KeyValuePair<string, string>("cloudMssqlInstanceNo", config.GetEnumValue(Category.Config, Key.CloudDbInstanceNo)));
                 postParams.Add(new KeyValuePair<string, string>("databaseName", ""));
                 postParams.Add(new KeyValuePair<string, string>("type", ""));
                 postParams.Add(new KeyValuePair<string, string>("responseFormatType", "json"));
@@ -283,7 +284,7 @@ namespace DMS
                 Task<string> result = asyncCall.WebApiCall(
                     endpointUrl
                     , GetPostType.POST
-                    , @"/clouddb/v2/getBackupList"
+                    , @"/vmssql/v2/getDmsBackupList"
                     , postParams);
 
                 json = await result;

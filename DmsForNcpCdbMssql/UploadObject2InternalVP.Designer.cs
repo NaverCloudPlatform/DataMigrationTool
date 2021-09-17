@@ -1,6 +1,6 @@
 ﻿namespace DMS
 {
-    partial class UploadObject2Internal
+    partial class UploadObject2InternalVP
     {
         /// <summary> 
         /// Required designer variable.
@@ -88,7 +88,7 @@
             this.groupBox1.Size = new System.Drawing.Size(816, 99);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "[Upload Object 2 Internal CP]";
+            this.groupBox1.Text = "[Upload Object 2 Internal VP]";
             // 
             // label1
             // 
@@ -359,13 +359,13 @@
             this.buttonObjectUpload.UseVisualStyleBackColor = false;
             this.buttonObjectUpload.Click += new System.EventHandler(this.buttonObjectUpload_Click);
             // 
-            // UploadObject2Internal
+            // UploadObject2InternalVP
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.DoubleBuffered = true;
-            this.Name = "UploadObject2Internal";
+            this.Name = "UploadObject2InternalVP";
             this.Size = new System.Drawing.Size(822, 628);
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);

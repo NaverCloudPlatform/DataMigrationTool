@@ -84,16 +84,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DownloadInternal2ObjectVP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DownloadInternal2ObjectVP.Designer.cs">
+      <DependentUpon>DownloadInternal2ObjectVP.cs</DependentUpon>
+    </Compile>
     <Compile Include="DownloadObject2Local.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="DownloadObject2Local.Designer.cs">
       <DependentUpon>DownloadObject2Local.cs</DependentUpon>
     </Compile>
+    <Compile Include="General\GFunctions.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="RestoreDatabaseVP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RestoreDatabaseVP.Designer.cs">
+      <DependentUpon>RestoreDatabaseVP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UploadObject2InternalVP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UploadObject2InternalVP.Designer.cs">
+      <DependentUpon>UploadObject2InternalVP.cs</DependentUpon>
     </Compile>
     <Compile Include="UploadObject2Internal.cs">
       <SubType>UserControl</SubType>
@@ -148,8 +167,17 @@
     <Content Include="ConfigDms.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="DownloadInternal2ObjectVP.resx">
+      <DependentUpon>DownloadInternal2ObjectVP.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DownloadObject2Local.resx">
       <DependentUpon>DownloadObject2Local.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RestoreDatabaseVP.resx">
+      <DependentUpon>RestoreDatabaseVP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UploadObject2InternalVP.resx">
+      <DependentUpon>UploadObject2InternalVP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UploadObject2Internal.resx">
       <DependentUpon>UploadObject2Internal.cs</DependentUpon>

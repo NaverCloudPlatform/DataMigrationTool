@@ -28,8 +28,6 @@ namespace DMS
         AmazonS3Config s3config;
         Config config;
         
-
-
         public ObjectStorage()
         {
             config = Config.Instance;
@@ -44,6 +42,46 @@ namespace DMS
                 return true;
             };
         }
+
+        public async Task<string> CreateBucketAsync(string BucketName)
+        {
+            string returnValue = "create bucket failed";
+            try
+            {
+                s3config = new AmazonS3Config();
+                string endpointUrl = config.GetEnumValue(Category.Config, Key.UseSSLObjectStorage) == "1" ? @"https://" : @"http://";
+                endpointUrl = endpointUrl + config.GetEnumValue(Category.Config, Key.ObjectEndPoint);
+                s3config.ServiceURL = endpointUrl;
+                string Message = await CheckBucket(BucketName);
+
+                if (Message == CallResult.Success.ToString())
+                {
+                    returnValue = "bucket exists";
+                }
+                else if (Message != CallResult.Success.ToString())
+                {
+                    var putBucketRequest = new PutBucketRequest
+                    {
+                        BucketName = BucketName,
+                        UseClientRegion = true
+                    };
+
+                    using (IAmazonS3 client = new AmazonS3Client(config.GetEnumValue(Category.Config, Key.ObjectAccessKey), config.GetEnumValue(Category.Config, Key.ObjectSecretKey), s3config))
+                    {
+                        var putBucketResponse = await client.PutBucketAsync(putBucketRequest);
+                        returnValue = CallResult.Success.ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                returnValue = ex.Message;
+                nlog.Error(string.Format("Message : {0}, StackTrace : {1}", ex.Message, ex.StackTrace));
+            }
+            return returnValue; 
+        }
+
+
 
         public async Task<string> CheckBucket(string BucketName)
         {

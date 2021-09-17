@@ -16,7 +16,7 @@ namespace DMS
     }
 
 
-    
+
     class Response
     {
         public string requestNo { get; set; }
@@ -26,9 +26,22 @@ namespace DMS
 
     }
 
+    class getDmsObjectStorageBackupList
+    {
+        public getDmsObjectStorageBackupListResponse getDmsObjectStorageBackupListResponse { get; set; }
+    }
+
     class getObjectStorageBackupList
     {
         public getObjectStorageBackupListResponse getObjectStorageBackupListResponse { get; set; }
+    }
+
+    class getDmsObjectStorageBackupListResponse
+    {
+        public string requestId { get; set; }
+        public string returnMessage { get; set; }
+        public int totalRows { get; set; }
+        public List<DmsFileList> dmsFileList { get; set; }
     }
 
     class getObjectStorageBackupListResponse
@@ -85,6 +98,24 @@ namespace DMS
         public getCloudDBInstanceListResponse getCloudDBInstanceListResponse { get; set; }
     }
 
+    class getCloudMssqlInstanceList
+    {
+        public getCloudMssqlInstanceListResponse getCloudMssqlInstanceListResponse { get; set; }
+    }
+
+    class getCloudMssqlInstanceListResponse
+    {
+        public string requestId { get; set; }
+        public string returnMessage { get; set; }
+        public int totalRows { get; set; }
+        public List<CloudMssqlInstance> cloudMssqlInstanceList { get; set; }
+    }
+
+    class CloudMssqlInstance
+    {
+        public string cloudMssqlInstanceNo { get; set; }
+    }
+
     class getCloudDBInstanceListResponse
     {
         public string returnCode { get; set; }
@@ -132,6 +163,11 @@ namespace DMS
         public getDmsOperationResponse getDmsOperationResponse { get; set; }
     }
 
+    class getDmsOperationVP
+    {
+        public getDmsOperationResponse dmsStatus { get; set; }
+    }
+
     class getDmsOperationResponse
     {
         public string requestId { get; set; }
@@ -145,10 +181,49 @@ namespace DMS
         public string code { get; set; }
         public string codeName { get; set; }
     }
-    
+
     class getBackupList
     {
         public getBackupListResponse getBackupListResponse { get; set; }
+    }
+
+    class getDmsBackupList
+    {
+        public getDmsBackupListResponse getDmsBackupListResponse { get; set; }
+    }
+
+    class getDmsBackupListResponse
+    {
+        public string requestId { get; set; }
+        public string returnCode { get; set; }
+        public string returnMessage { get; set; }
+        public List<backupFileVP> backupFileList { get; set; }
+    }
+
+    class backupFileVP
+    {
+        public string cloudMssqlServerName { get; set; }
+        public string fileName { get; set; }
+        public long fileSize { get; set; }
+        public string databaseName { get; set; }
+        public string firstLsn { get; set; }
+        public string lastLsn { get; set; }
+        public backupType backupType { get; set; }
+        public string startTime { get; set; }
+        public string endTime { get; set; }
+    }
+
+
+    class backupFile
+    {
+        public string hostName { get; set; }
+        public string fileName { get; set; }
+        public string databaseName { get; set; }
+        public string firstLsn { get; set; }
+        public string lastLsn { get; set; }
+        public backupType backupType { get; set; }
+        public string backupStartTime { get; set; }
+        public string backupEndTime { get; set; }
     }
 
     class getBackupListResponse
@@ -182,6 +257,11 @@ namespace DMS
         public restoreDmsDatabaseResponse restoreDmsDatabaseResponse { get; set; }
     }
 
+    class restoreDmsDatabaseVP
+    {
+        public restoreDmsDatabaseResponse dmsRequest { get; set; }
+    }
+
     class restoreDmsDatabaseResponse
     {
         public string requestId { get; set; }
@@ -189,10 +269,15 @@ namespace DMS
         public string returnMessage { get; set; }
         public string requestNo { get; set; }
     }
-    
+
     class restoreDmsTransactionLog
     {
         public restoreDmsTransactionLogResponse restoreDmsTransactionLogResponse { get; set; }
+    }
+
+    class restoreDmsTransactionLogVP
+    {
+        public restoreDmsTransactionLogResponse dmsRequest { get; set; }
     }
 
     class restoreDmsTransactionLogResponse

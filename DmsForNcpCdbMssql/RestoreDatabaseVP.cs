@@ -14,12 +14,12 @@ using DMS.General;
 
 namespace DMS
 {
-    public partial class RestoreDatabase : UserControl
+    public partial class RestoreDatabaseVP : UserControl
     {
-        private static readonly Lazy<RestoreDatabase> lazy =
-            new Lazy<RestoreDatabase>(() => new RestoreDatabase(), LazyThreadSafetyMode.ExecutionAndPublication);
+        private static readonly Lazy<RestoreDatabaseVP> lazy =
+            new Lazy<RestoreDatabaseVP>(() => new RestoreDatabaseVP(), LazyThreadSafetyMode.ExecutionAndPublication);
 
-        public static RestoreDatabase Instance { get { return lazy.Value; } }
+        public static RestoreDatabaseVP Instance { get { return lazy.Value; } }
         
         Config config;
         ObjectStorage objectStorage;
@@ -28,7 +28,7 @@ namespace DMS
         Dictionary<Tuple<string, string, string>, Response> apiResponseTemp = new Dictionary<Tuple<string, string, string>, Response>();
         public event EventHandler<StatusEventArgs> StatusChangeEvent;
         private bool workBackupStorage = false; 
-        private RestoreDatabase()
+        private RestoreDatabaseVP()
         {
             InitializeComponent();
             GFunctions.ColumSizeFix(dgvBackupStorage);            
@@ -134,7 +134,7 @@ namespace DMS
                         long recoveryFileSize = Convert.ToInt64(item.Cells[2].EditedFormattedValue.ToString()); 
                         if (await IsMatchFileSizeInObjectStorage(recoveryFilename, recoveryFileSize))
                         {
-                            postParams.Add(new KeyValuePair<string, string>("cloudDBInstanceNo", config.GetEnumValue(Category.Config, Key.CloudDbInstanceNo)));
+                            postParams.Add(new KeyValuePair<string, string>("cloudMssqlInstanceNo", config.GetEnumValue(Category.Config, Key.CloudDbInstanceNo)));
                             postParams.Add(new KeyValuePair<string, string>("fileName", recoveryFilename));
                             postParams.Add(new KeyValuePair<string, string>("isRecovery", checkStatus));
                             postParams.Add(new KeyValuePair<string, string>("newDatabaseName", config.GetEnumValue(Category.Upload, Key.NewDatabaseName)));
@@ -145,21 +145,21 @@ namespace DMS
                             Task<string> result = asyncCall.WebApiCall(
                                 endpointUrl
                                 , GetPostType.POST
-                                , @"/clouddb/v2/restoreDmsDatabase"
+                                , @"/vmssql/v2/restoreDmsDatabase"
                                 , postParams);
 
                             json = await result;
                             nlog.Warn(json);
 
-                            restoreDmsDatabase restoreDmsDatabase = JsonConvert.DeserializeObject<restoreDmsDatabase>(json);
+                            restoreDmsDatabaseVP restoreDmsDatabaseVP = JsonConvert.DeserializeObject<restoreDmsDatabaseVP>(json);
                             ApiResponseRecord(
                                 config.GetEnumValue(Category.Config, Key.CloudDbInstanceNo),
                                 config.GetEnumValue(Category.Upload, Key.NewDatabaseName),
                                 item.Cells[1].EditedFormattedValue.ToString()
                                 , new Response
                                 {
-                                    requestNo = restoreDmsDatabase.restoreDmsDatabaseResponse.requestNo,
-                                    requestReturnCode = restoreDmsDatabase.restoreDmsDatabaseResponse.returnCode,
+                                    requestNo = restoreDmsDatabaseVP.dmsRequest.requestNo,
+                                    requestReturnCode = restoreDmsDatabaseVP.dmsRequest.returnCode,
                                     returnCode = "",
                                     returnCodeName = ""
                                 });
@@ -228,70 +228,74 @@ namespace DMS
         {
             nlog.Warn("BackupStorageFileList Started");
             workBackupStorage = true;
-            
+            string getDmsObjectStorageBackupListResponse = string.Empty; 
             StatusUpdate(Status.Working);
             try
             {
                 ConfigSaveAllItem();
                 updateRestoreStatus();
                 
-                Task<string> result = getObjectStorageBackupListAync(textInternalFolder.Text);
+                Task<string> result = getDmsObjectStorageBackupListAsync(textInternalFolder.Text);
                 var settings = new JsonSerializerSettings
                 {
                     NullValueHandling = NullValueHandling.Ignore,
                     MissingMemberHandling = MissingMemberHandling.Ignore
                 };
-                string getObjectStorageBackupListResult = await result;
+                getDmsObjectStorageBackupListResponse = await result;
 
-                if (getObjectStorageBackupListResult.Contains("server does not exists"))
+                if (getDmsObjectStorageBackupListResponse.Contains("server does not exists"))
                     throw new Exception("There is no corresponding server. Perform the Configuration steps again.");
 
-                getObjectStorageBackupList getObjectStorageBackupList = JsonConvert.DeserializeObject<getObjectStorageBackupList>(getObjectStorageBackupListResult, settings);
-                List<DmsFileList> files = getObjectStorageBackupList.getObjectStorageBackupListResponse.dmsFileList;
-                long uiRefresh = 0;
-                dgvBackupStorage.InvokeIfRequired(s =>
+                var getDmsObjectStorageBackupList = JsonConvert.DeserializeObject<getDmsObjectStorageBackupList>(getDmsObjectStorageBackupListResponse, settings);
+                List<DmsFileList> files = getDmsObjectStorageBackupList.getDmsObjectStorageBackupListResponse.dmsFileList;
+                if (getDmsObjectStorageBackupListResponse.Contains("getDmsObjectStorageBackupListResponse"))
                 {
-                    s.Rows.Clear();
-                    s.RowHeadersVisible = false;
-                    s.BackgroundColor = Color.White;
-                });
-                foreach (var file in files)
-                {
-                    if ((System.Text.RegularExpressions.Regex.IsMatch(file.fileName, textFilterString.Text, System.Text.RegularExpressions.RegexOptions.IgnoreCase)) || textFilterString.Text.Length == 0)
+                    long uiRefresh = 0;
+                    dgvBackupStorage.InvokeIfRequired(s =>
                     {
-                        string RequestNo = string.Empty;
-                        string RequestReturnCode = string.Empty;
-                        string ReturnCode = string.Empty;
-                        string ReturnCodeName = string.Empty;
+                        s.Rows.Clear();
+                        s.RowHeadersVisible = false;
+                        s.BackgroundColor = Color.White;
+                    });
+                    foreach (var file in files)
+                    {
+                        if ((System.Text.RegularExpressions.Regex.IsMatch(file.fileName, textFilterString.Text, System.Text.RegularExpressions.RegexOptions.IgnoreCase)) || textFilterString.Text.Length == 0)
+                        {
+                            string RequestNo = string.Empty;
+                            string RequestReturnCode = string.Empty;
+                            string ReturnCode = string.Empty;
+                            string ReturnCodeName = string.Empty;
 
-                        if (apiResponses.ContainsKey(new Tuple<string, string, string>(config.GetEnumValue(Category.Config, Key.CloudDbInstanceNo), config.GetEnumValue(Category.Upload, Key.NewDatabaseName), file.fileName)))
-                        {
-                            RequestNo = apiResponses[new Tuple<string, string, string>(config.GetEnumValue(Category.Config, Key.CloudDbInstanceNo), config.GetEnumValue(Category.Upload, Key.NewDatabaseName), file.fileName)].requestNo;
-                            RequestReturnCode = apiResponses[new Tuple<string, string, string>(config.GetEnumValue(Category.Config, Key.CloudDbInstanceNo), config.GetEnumValue(Category.Upload, Key.NewDatabaseName), file.fileName)].requestReturnCode;
-                            ReturnCode = apiResponses[new Tuple<string, string, string>(config.GetEnumValue(Category.Config, Key.CloudDbInstanceNo), config.GetEnumValue(Category.Upload, Key.NewDatabaseName), file.fileName)].returnCode;
-                            ReturnCodeName = apiResponses[new Tuple<string, string, string>(config.GetEnumValue(Category.Config, Key.CloudDbInstanceNo), config.GetEnumValue(Category.Upload, Key.NewDatabaseName), file.fileName)].returnCodeName;
+                            if (apiResponses.ContainsKey(new Tuple<string, string, string>(config.GetEnumValue(Category.Config, Key.CloudDbInstanceNo), config.GetEnumValue(Category.Upload, Key.NewDatabaseName), file.fileName)))
+                            {
+                                RequestNo = apiResponses[new Tuple<string, string, string>(config.GetEnumValue(Category.Config, Key.CloudDbInstanceNo), config.GetEnumValue(Category.Upload, Key.NewDatabaseName), file.fileName)].requestNo;
+                                RequestReturnCode = apiResponses[new Tuple<string, string, string>(config.GetEnumValue(Category.Config, Key.CloudDbInstanceNo), config.GetEnumValue(Category.Upload, Key.NewDatabaseName), file.fileName)].requestReturnCode;
+                                ReturnCode = apiResponses[new Tuple<string, string, string>(config.GetEnumValue(Category.Config, Key.CloudDbInstanceNo), config.GetEnumValue(Category.Upload, Key.NewDatabaseName), file.fileName)].returnCode;
+                                ReturnCodeName = apiResponses[new Tuple<string, string, string>(config.GetEnumValue(Category.Config, Key.CloudDbInstanceNo), config.GetEnumValue(Category.Upload, Key.NewDatabaseName), file.fileName)].returnCodeName;
+                            }
+                            dgvBackupStorage.InvokeIfRequired(s =>
+                            {
+                                int n = s.Rows.Add();
+                                s.Rows[n].Cells[0].Value = "false";
+                                s.Rows[n].Cells[1].Value = file.fileName;
+                                s.Rows[n].Cells[2].Value = file.fileLength;
+                                s.Rows[n].Cells[3].Value = String.Format("{0:yyyy-MM-dd HH:mm:ss}", System.DateTime.Parse(file.lastWriteTime));
+                                s.Rows[n].Cells[4].Value = RequestNo;
+                                s.Rows[n].Cells[5].Value = RequestReturnCode;
+                                s.Rows[n].Cells[6].Value = ReturnCode;
+                                s.Rows[n].Cells[7].Value = ReturnCodeName;
+                            });
+                            if (uiRefresh % 100 == 0) StatusUpdate(Status.Working);
+                            uiRefresh++;
                         }
-                        dgvBackupStorage.InvokeIfRequired(s =>
-                        {
-                            int n = s.Rows.Add();
-                            s.Rows[n].Cells[0].Value = "false";
-                            s.Rows[n].Cells[1].Value = file.fileName;
-                            s.Rows[n].Cells[2].Value = file.fileLength;
-                            s.Rows[n].Cells[3].Value = String.Format("{0:yyyy-MM-dd HH:mm:ss}", System.DateTime.Parse(file.lastWriteTime));
-                            s.Rows[n].Cells[4].Value = RequestNo;
-                            s.Rows[n].Cells[5].Value = RequestReturnCode;
-                            s.Rows[n].Cells[6].Value = ReturnCode;
-                            s.Rows[n].Cells[7].Value = ReturnCodeName;
-                        });
-                        if (uiRefresh % 100 == 0) StatusUpdate(Status.Working);
-                        uiRefresh++;
                     }
                 }
+
             }
             catch (Exception ex)
             {
                 nlog.Error(string.Format("{0}, {1}", ex.Message, ex.StackTrace));
-                MessageBox.Show(ex.Message);
+                MessageBox.Show($@"ex.Message : {ex.Message}, getDmsObjectStorageBackupList response : {getDmsObjectStorageBackupListResponse} {Environment.NewLine} try again!");
             }
             finally
             {
@@ -301,9 +305,9 @@ namespace DMS
             nlog.Warn("BackupStorageFileList Completed");
         }
 
-        private async Task<string> getObjectStorageBackupListAync(string objectFolder)
+        private async Task<string> getDmsObjectStorageBackupListAsync(string objectFolder)
         {
-            nlog.Warn("BackupStorageFileListAync Started");
+            nlog.Warn("getDmsObjectStorageBackupListAsync Started");
             workBackupStorage = true; 
             ConfigSaveAllItem();
             string json = string.Empty;
@@ -311,7 +315,7 @@ namespace DMS
             {
                 var postParams = new List<KeyValuePair<string, string>>();
                 AsyncCall asyncCall = new AsyncCall();
-                postParams.Add(new KeyValuePair<string, string>("cloudDBInstanceNo", config.GetEnumValue(Category.Config, Key.CloudDbInstanceNo)));
+                postParams.Add(new KeyValuePair<string, string>("cloudMssqlInstanceNo", config.GetEnumValue(Category.Config, Key.CloudDbInstanceNo)));
                 postParams.Add(new KeyValuePair<string, string>("folderName", objectFolder));
                 postParams.Add(new KeyValuePair<string, string>("responseFormatType", "json"));
                 string endpointUrl = config.GetEnumValue(Category.Config, Key.UseSSLApiGateway) == "1" ? @"https://" : @"http://";
@@ -320,7 +324,7 @@ namespace DMS
                 Task<string> result = asyncCall.WebApiCall(
                     endpointUrl
                     , GetPostType.POST
-                    , @"/clouddb/v2/getObjectStorageBackupList"
+                    , @"/vmssql/v2/getDmsObjectStorageBackupList"
                     , postParams);
 
                 json = await result;
@@ -335,7 +339,7 @@ namespace DMS
                 workBackupStorage = false;
             }
 
-            nlog.Warn("BackupStorageFileListAync Completed");
+            nlog.Warn("getDmsObjectStorageBackupListAsync Completed");
             return json;
         }
 
@@ -358,7 +362,7 @@ namespace DMS
                     Task<string> result = asyncCall.WebApiCall(
                         endpointUrl
                         , GetPostType.POST
-                        , @"/clouddb/v2/getDmsOperation"
+                        , @"/vmssql/v2/getDmsOperation"
                         , postParams);
 
                     json = await result;
@@ -367,12 +371,12 @@ namespace DMS
                         NullValueHandling = NullValueHandling.Ignore,
                         MissingMemberHandling = MissingMemberHandling.Ignore
                     };
-                    getDmsOperation getDmsOperation = JsonConvert.DeserializeObject<getDmsOperation>(json, settings);
+                    getDmsOperationVP getDmsOperationVP = JsonConvert.DeserializeObject<getDmsOperationVP>(json, settings);
 
                     string codeName = string.Empty;
                     try
                     {
-                        codeName = getDmsOperation.getDmsOperationResponse.status.codeName; 
+                        codeName = getDmsOperationVP.dmsStatus.status.codeName; 
                     }
                     catch  { }
                     if (codeName == string.Empty)
@@ -384,7 +388,7 @@ namespace DMS
                     {
                         requestNo = a.Value.requestNo,
                         requestReturnCode = a.Value.requestReturnCode,
-                        returnCode = getDmsOperation.getDmsOperationResponse.returnCode,
+                        returnCode = getDmsOperationVP.dmsStatus.returnCode,
                         returnCodeName = codeName
                     });
                     nlog.Warn(json);
@@ -439,7 +443,7 @@ namespace DMS
                         long recoveryFileSize = Convert.ToInt64(item.Cells[2].EditedFormattedValue.ToString());
                         if (await IsMatchFileSizeInObjectStorage(recoveryFilename, recoveryFileSize))
                         {
-                            postParams.Add(new KeyValuePair<string, string>("cloudDBInstanceNo", config.GetEnumValue(Category.Config, Key.CloudDbInstanceNo)));
+                            postParams.Add(new KeyValuePair<string, string>("cloudMssqlInstanceNo", config.GetEnumValue(Category.Config, Key.CloudDbInstanceNo)));
                             postParams.Add(new KeyValuePair<string, string>("fileName", recoveryFilename));
                             postParams.Add(new KeyValuePair<string, string>("isRecovery", checkStatus));
                             postParams.Add(new KeyValuePair<string, string>("newDatabaseName", config.GetEnumValue(Category.Upload, Key.NewDatabaseName)));
@@ -452,20 +456,20 @@ namespace DMS
                             Task<string> result = asyncCall.WebApiCall(
                                 endpointUrl
                                 , GetPostType.POST
-                                , @"/clouddb/v2/restoreDmsTransactionLog"
+                                , @"/vmssql/v2/restoreDmsTransactionLog"
                                 , postParams);
 
                             json = await result;
                             nlog.Warn(json);
-                            restoreDmsTransactionLog restoreDmsTransactionLog = JsonConvert.DeserializeObject<restoreDmsTransactionLog>(json);
+                            restoreDmsTransactionLogVP restoreDmsTransactionLogVP = JsonConvert.DeserializeObject<restoreDmsTransactionLogVP>(json);
                             ApiResponseRecord(
                                 config.GetEnumValue(Category.Config, Key.CloudDbInstanceNo),
                                 config.GetEnumValue(Category.Upload, Key.NewDatabaseName),
                                 item.Cells[1].EditedFormattedValue.ToString()
                                 , new Response
                                 {
-                                    requestNo = restoreDmsTransactionLog.restoreDmsTransactionLogResponse.requestNo,
-                                    requestReturnCode = restoreDmsTransactionLog.restoreDmsTransactionLogResponse.returnCode,
+                                    requestNo = restoreDmsTransactionLogVP.dmsRequest.requestNo,
+                                    requestReturnCode = restoreDmsTransactionLogVP.dmsRequest.returnCode,
                                     returnCode = "",
                                     returnCodeName = ""
                                 });

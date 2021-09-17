@@ -2,6 +2,8 @@
 
 DMT (Data Migration Tool)는 네이버 클라우드 데이터베이스 서버에 전체 백업과 로그 백업을이용해 서비스를 클라우드로 마이그레이션 하거나, 사용 중인 클라우드 데이터베이스 백업을 내려받는 프로그램입니다. 현재 Cloud DB for MSSQL만 지원하고 있으며, 향후 다른 데이터베이스도 지원할 계획입니다.
 
+**21년 9월 17일 VPC Public 망에 DMT 기능이 추가 되었습니다.** 
+
 ### 동작 방식 및 포함된 예제
 
 Cloud DB에 백업 파일을 이용해 복원하기 위해서는 몇 번의 파일 복사가 필요합니다. 첫 번째, 사용자 백업 파일을 Amazon S3 오브젝트 스토리지(Object Storage)나, 네이버 클라우드 플랫폼 오브젝트 스토리지로 업로드합니다. 이때 S3 Browser 나 제공된 프로그램으로 업로드 가능합니다. 두 번째, 백업 복구용 내부 NAS 스토리지(Internal Storage)에 업로드합니다. 세 번째, 지정한 RDS 서버에 복구해 마이그레이션을 완료합니다.(Amazon S3에 백업된 데이터베이스 파일은 오브젝트 스토리지로 옮길 필요 없이 바로 내부 스토리지로 옮길 수 있습니다. ) 내부 스토리지로 올려진 파일은 15일 이내 복구하지 않으면, 모두 삭제됩니다.
@@ -34,17 +36,20 @@ Git Repository에서 DmtMssql.zip 파일을 다운로드해 바로 마이그레�
 
 ### 설정 (Configuration)
 
-로컬 컴퓨터에서 접속할 오브젝트 스토리지 정보(Target Object Storage Info)와 API를 이용하기 위한 기본 정보 ( API Gateway Info), 미리 생성해둔 RDS 데이터베이스 정보(Database Info)가 필요합니다. 본 단계가 정상적으로 테스트 되고 저장되면 로컬 백업파일을 이용해 RDS에 데이터베이스를 복구할 수 있습니다. 아래 가이드를 숙지해 해당 정보를 저장하고 다음 작업을 진행하면 됩니다. (업로드 할 파일이름은 한글과 공백을 지원하지 않습니다.)
+로컬 컴퓨터에서 접속할 오브젝트 스토리지 정보(Target Object Storage Info)와 API를 이용하기 위한 기본 정보 ( API Gateway Info), 미리 생성해둔 RDS 데이터베이스 정보(Database Info)가 필요합니다. 본 단계가 정상적으로 테스트 되고 저장되면 로컬 백업파일을 이용해 RDS에 데이터베이스를 복구할 수 있습니다. 아래 가이드를 숙지해 해당 정보를 저장하고 다음 작업을 진행하면 됩니다. (업로드 할 파일이름은 한글과 공백을 지원하지 않습니다.) 
 
- ![](mdimg/dmt_0.png)
+ApiGateway Info 항목의 Platform 은 Classic Public 과 VPC Public 을 지원하고 있습니다. 사용 할 서버가 있는 Platform 정보를 저장 합니다.  
 
+#### 콘솔에서 Classic 과 VPC Platform 선택
+![](mdimg/dmt_14.png)
 
+![](mdimg/dmt_0.png)
 
 #### Target Object Storage Info
 
 ##### EndPoint 
 
-[링크 : ObjectStorageEndPoint_URL](http://docs.ncloud.com/en/storage/storage-7-1.html) Amazon S3 EndPoint 나 네이버 클라우드 플랫폼 오브젝트 스토리지 접속 도메인입니다. http:// 및 https://는 제외하고 적습니다. 해당 URL 이 틀리면 A WebException with status NameResolutionFailure was thrown. 에러가 발생합니다.
+[링크 : ObjectStorageEndPoint_URL](https://api.ncloud-docs.com/docs/storage-objectstorage) Amazon S3 EndPoint 나 네이버 클라우드 플랫폼 오브젝트 스토리지 접속 도메인입니다. http:// 및 https://는 제외하고 적습니다. 해당 URL 이 틀리면 A WebException with status NameResolutionFailure was thrown. 에러가 발생합니다.
 
 ![](mdimg/dms_1.png)
 
@@ -60,7 +65,7 @@ Potal > MyPage > Manage Authentication Key 페이지에서 키를 생성합니�
 
 ##### Bucket
 
-오브젝트 스토리지에 버킷을 만들고 해당 버킷 이름을 적습니다. 해당 정보가 틀리거나 잘못되면 bucket not exists 오류가 발생합니다.![](/mdimg/dms_3.png)
+오브젝트 스토리지에 버킷을 만들어줍니다. ![](mdimg/dms_3.png)
 
 
 
@@ -68,7 +73,7 @@ Potal > MyPage > Manage Authentication Key 페이지에서 키를 생성합니�
 
 ##### EndPoint
 
-[링크 : Cloud_API_개요](http://docs.ncloud.com/ko/api_new/api_new-9-1.html) 사용자 가이드에는 URL 및 본 C# 프로그램에서 사용하는 API의 자세한 설명이 있습니다. 
+[링크 : Cloud_API_개요](https://api.ncloud-docs.com/docs/database-clouddb) 사용자 가이드에는 URL 및 본 C# 프로그램에서 사용하는 API의 자세한 설명이 있습니다. 
 
 ![](mdimg/dms_4.png)
 
@@ -79,13 +84,6 @@ Potal > MyPage > Manage Authentication Key 페이지에서 키를 생성합니�
 ##### Secret Key
 
 위 설명과 같음 
-
-##### API Key
-
-처음 사용할 경우 API Keys를 만들고 사용합니다. 해당 정보가 틀릴 경우 Permission Denied 오류가 발생합니다.
-
-##### ![](mdimg/dms_5.png)
-
 
 
 #### Database Info
@@ -98,7 +96,7 @@ Potal > MyPage > Manage Authentication Key 페이지에서 키를 생성합니�
 
 #### 정보저장 (Save)
 
-Save를 눌러 저장합니다. 저장 버튼은 setObjectStorageInfo API를 호출해 DMS API 가 사용할 오브젝트 스토리지 정보를 저장합니다. 저장하지 않으면 DMS API 가 동작하지 않습니다.
+Save를 눌러 저장합니다. 저장 버튼은 setObjectStorageInfo API를 호출해 DMS API 가 사용할 오브젝트 스토리지 정보를 저장합니다. **저장하지 않으면 DMS API 가 동작하지 않습니다.**
 
 
 

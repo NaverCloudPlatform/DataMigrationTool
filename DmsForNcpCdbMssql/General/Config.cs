@@ -13,11 +13,14 @@ using NLog;
 
 namespace DMS
 {
+//CP CF CG
+//VP VF VG
 
     public enum Category { Config, Upload, Download }
     public enum Key
     {
             ObjectEndPoint
+            , Platform
             , UseSSLObjectStorage
             , ObjectAccessKey
             , ObjectSecretKey
@@ -25,6 +28,8 @@ namespace DMS
             , ApiUrl
             , UseSSLApiGateway
             , DefaultTestApi
+            , CPDefaultTestApi
+            , VPDefaultTestApi
             , ApiGatewayAccessKey
             , ApiGatewaySecretKey
             , ApiGatewayKey
@@ -64,6 +69,7 @@ namespace DMS
             try
             {
                 sReturn = AppConfigurations[new Tuple<Category, Key>(category, key)];
+
             }
             catch
             {

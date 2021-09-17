@@ -34,7 +34,7 @@ namespace DMS
             config = Config.Instance;
             
             GenerateCounter();
-            labelVersion.Text = string.Format("DMS Version : {0}", Application.ProductVersion);
+            labelVersion.Text = string.Format("Version : {0}", Application.ProductVersion);
             timer.Start();
         }
 
@@ -100,6 +100,10 @@ namespace DMS
                 panelMain.Controls.Remove(DownloadObject2Local.Instance);
             if (panelMain.Controls.Contains(ViewLog.Instance))
                 panelMain.Controls.Remove(ViewLog.Instance);
+
+            if (panelMain.Controls.Contains(UploadObject2InternalVP.Instance))
+                panelMain.Controls.Remove(UploadObject2InternalVP.Instance);
+            
         }
 
 
@@ -132,68 +136,136 @@ namespace DMS
 
             RemoveAllUc();
 
-            if (!panelMain.Controls.Contains(UploadObject2Internal.Instance))
+            if (config.GetEnumValue(Category.Config, Key.Platform) == "CP")
             {
-                panelMain.Controls.Add(UploadObject2Internal.Instance);
-                UploadObject2Internal.Instance.Dock = DockStyle.Fill;
+                if (!panelMain.Controls.Contains(UploadObject2Internal.Instance))
+                {
+                    panelMain.Controls.Add(UploadObject2Internal.Instance);
+                    UploadObject2Internal.Instance.Dock = DockStyle.Fill;
+                }
+
+                UploadObject2Internal.Instance.BringToFront();
+                UploadObject2Internal.Instance.StatusChangeEvent += UpdateBottomStatusText;
+
+                panelLeft.Height = buttonBackupStorageUpload.Height;
+                panelLeft.Top = buttonBackupStorageUpload.Top;
+                UploadObject2Internal.Instance.WriteConfig2TextBox();
+                clearSubjectRegular();
+                buttonBackupStorageUpload.ForeColor = Color.FromArgb(90, 188, 211);
+                buttonBackupStorageUpload.BackColor = Color.FromArgb(64, 64, 64);
+                UploadObject2Internal.Instance.InternalStorageFileList();
+                UploadObject2Internal.Instance.ObjectStorageFileList();
             }
+            else
+            {
+                if (!panelMain.Controls.Contains(UploadObject2InternalVP.Instance))
+                {
+                    panelMain.Controls.Add(UploadObject2InternalVP.Instance);
+                    UploadObject2InternalVP.Instance.Dock = DockStyle.Fill;
+                }
 
-            UploadObject2Internal.Instance.BringToFront();
-            UploadObject2Internal.Instance.StatusChangeEvent += UpdateBottomStatusText;
+                UploadObject2InternalVP.Instance.BringToFront();
+                UploadObject2InternalVP.Instance.StatusChangeEvent += UpdateBottomStatusText;
 
-            panelLeft.Height = buttonBackupStorageUpload.Height;
-            panelLeft.Top = buttonBackupStorageUpload.Top;
-            UploadObject2Internal.Instance.WriteConfig2TextBox();
-            clearSubjectRegular();
-            buttonBackupStorageUpload.ForeColor = Color.FromArgb(90, 188, 211);
-            buttonBackupStorageUpload.BackColor = Color.FromArgb(64, 64, 64);
-            UploadObject2Internal.Instance.InternalStorageFileList();
-            UploadObject2Internal.Instance.ObjectStorageFileList();
+                panelLeft.Height = buttonBackupStorageUpload.Height;
+                panelLeft.Top = buttonBackupStorageUpload.Top;
+                UploadObject2InternalVP.Instance.WriteConfig2TextBox();
+                clearSubjectRegular();
+                buttonBackupStorageUpload.ForeColor = Color.FromArgb(90, 188, 211);
+                buttonBackupStorageUpload.BackColor = Color.FromArgb(64, 64, 64);
+                UploadObject2InternalVP.Instance.InternalStorageFileList();
+                UploadObject2InternalVP.Instance.ObjectStorageFileList();
+            }
         }
 
         private void buttonRestoreDatabase_Click(object sender, EventArgs e)
         {
             RemoveAllUc();
 
-            if (!panelMain.Controls.Contains(RestoreDatabase.Instance))
+            if (config.GetEnumValue(Category.Config, Key.Platform) == "CP")
             {
-                panelMain.Controls.Add(RestoreDatabase.Instance);
-                RestoreDatabase.Instance.Dock = DockStyle.Fill;
+                if (!panelMain.Controls.Contains(RestoreDatabase.Instance))
+                {
+                    panelMain.Controls.Add(RestoreDatabase.Instance);
+                    RestoreDatabase.Instance.Dock = DockStyle.Fill;
+                }
+
+                RestoreDatabase.Instance.BringToFront();
+                RestoreDatabase.Instance.StatusChangeEvent += UpdateBottomStatusText;
+
+                panelLeft.Height = buttonRestoreDatabase.Height;
+                panelLeft.Top = buttonRestoreDatabase.Top;
+                RestoreDatabase.Instance.WriteConfig2TextBox();
+                clearSubjectRegular();
+                buttonRestoreDatabase.ForeColor = Color.FromArgb(90, 188, 211);
+                buttonRestoreDatabase.BackColor = Color.FromArgb(64, 64, 64);
+                RestoreDatabase.Instance.BackupStorageFileList();
             }
+            else
+            {
+                if (!panelMain.Controls.Contains(RestoreDatabaseVP.Instance))
+                {
+                    panelMain.Controls.Add(RestoreDatabaseVP.Instance);
+                    RestoreDatabaseVP.Instance.Dock = DockStyle.Fill;
+                }
 
-            RestoreDatabase.Instance.BringToFront();
-            RestoreDatabase.Instance.StatusChangeEvent += UpdateBottomStatusText;
+                RestoreDatabaseVP.Instance.BringToFront();
+                RestoreDatabaseVP.Instance.StatusChangeEvent += UpdateBottomStatusText;
 
-            panelLeft.Height = buttonRestoreDatabase.Height;
-            panelLeft.Top = buttonRestoreDatabase.Top;
-            RestoreDatabase.Instance.WriteConfig2TextBox();
-            clearSubjectRegular();
-            buttonRestoreDatabase.ForeColor = Color.FromArgb(90, 188, 211);
-            buttonRestoreDatabase.BackColor = Color.FromArgb(64, 64, 64);
-            RestoreDatabase.Instance.BackupStorageFileList();
+                panelLeft.Height = buttonRestoreDatabase.Height;
+                panelLeft.Top = buttonRestoreDatabase.Top;
+                RestoreDatabaseVP.Instance.WriteConfig2TextBox();
+                clearSubjectRegular();
+                buttonRestoreDatabase.ForeColor = Color.FromArgb(90, 188, 211);
+                buttonRestoreDatabase.BackColor = Color.FromArgb(64, 64, 64);
+                RestoreDatabaseVP.Instance.BackupStorageFileList();
+            }
         }
 
         private void buttonDownloadInternal2Object_Click(object sender, EventArgs e)
         {
             RemoveAllUc();
 
-            if (!panelMain.Controls.Contains(DownloadInternal2Object.Instance))
+            if (config.GetEnumValue(Category.Config, Key.Platform) == "CP")
             {
-                panelMain.Controls.Add(DownloadInternal2Object.Instance);
-                DownloadInternal2Object.Instance.Dock = DockStyle.Fill;
-            }
+                if (!panelMain.Controls.Contains(DownloadInternal2Object.Instance))
+                {
+                    panelMain.Controls.Add(DownloadInternal2Object.Instance);
+                    DownloadInternal2Object.Instance.Dock = DockStyle.Fill;
+                }
 
-            DownloadInternal2Object.Instance.BringToFront();
-            DownloadInternal2Object.Instance.StatusChangeEvent += UpdateBottomStatusText;
-            
-            panelLeft.Height = buttonDbBackupDownload.Height;
-            panelLeft.Top = buttonDbBackupDownload.Top;
-            DownloadInternal2Object.Instance.WriteConfig2TextBox();
-            clearSubjectRegular();
-            buttonDbBackupDownload.ForeColor = Color.FromArgb(90, 188, 211);
-            buttonDbBackupDownload.BackColor = Color.FromArgb(64, 64, 64);
-            DownloadInternal2Object.Instance.InternalStorageFileList();
-            DownloadInternal2Object.Instance.ObjectStorageFileList();
+                DownloadInternal2Object.Instance.BringToFront();
+                DownloadInternal2Object.Instance.StatusChangeEvent += UpdateBottomStatusText;
+
+                panelLeft.Height = buttonDbBackupDownload.Height;
+                panelLeft.Top = buttonDbBackupDownload.Top;
+                DownloadInternal2Object.Instance.WriteConfig2TextBox();
+                clearSubjectRegular();
+                buttonDbBackupDownload.ForeColor = Color.FromArgb(90, 188, 211);
+                buttonDbBackupDownload.BackColor = Color.FromArgb(64, 64, 64);
+                DownloadInternal2Object.Instance.InternalStorageFileList();
+                DownloadInternal2Object.Instance.ObjectStorageFileList();
+            }
+            else
+            {
+                if (!panelMain.Controls.Contains(DownloadInternal2ObjectVP.Instance))
+                {
+                    panelMain.Controls.Add(DownloadInternal2ObjectVP.Instance);
+                    DownloadInternal2ObjectVP.Instance.Dock = DockStyle.Fill;
+                }
+
+                DownloadInternal2ObjectVP.Instance.BringToFront();
+                DownloadInternal2ObjectVP.Instance.StatusChangeEvent += UpdateBottomStatusText;
+
+                panelLeft.Height = buttonDbBackupDownload.Height;
+                panelLeft.Top = buttonDbBackupDownload.Top;
+                DownloadInternal2ObjectVP.Instance.WriteConfig2TextBox();
+                clearSubjectRegular();
+                buttonDbBackupDownload.ForeColor = Color.FromArgb(90, 188, 211);
+                buttonDbBackupDownload.BackColor = Color.FromArgb(64, 64, 64);
+                DownloadInternal2ObjectVP.Instance.InternalStorageFileList();
+                DownloadInternal2ObjectVP.Instance.ObjectStorageFileList();
+            }
         }
 
         private void buttonDownloadObject2Local_Click(object sender, EventArgs e)

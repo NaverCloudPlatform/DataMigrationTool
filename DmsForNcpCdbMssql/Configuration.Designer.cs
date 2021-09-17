@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.panelObjectStorageInfo = new System.Windows.Forms.Panel();
             this.groupBoxObjectStorageInfo = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.textObjectEndPoint = new System.Windows.Forms.TextBox();
             this.buttonConnectionTest = new System.Windows.Forms.Button();
             this.labelObjectStorageDesc = new System.Windows.Forms.Label();
@@ -45,6 +45,9 @@
             this.textBoxEndPointLable = new System.Windows.Forms.TextBox();
             this.panelApiGatewayInfo = new System.Windows.Forms.Panel();
             this.groupBoxApiGatewayInfo = new System.Windows.Forms.GroupBox();
+            this.labelPlatform = new System.Windows.Forms.Label();
+            this.rbVpcPublic = new System.Windows.Forms.RadioButton();
+            this.rbClassicPublic = new System.Windows.Forms.RadioButton();
             this.textBoxAPIEndPointLable = new System.Windows.Forms.TextBox();
             this.labelApiGateWayDesc = new System.Windows.Forms.Label();
             this.textApiUrl = new System.Windows.Forms.TextBox();
@@ -65,8 +68,6 @@
             this.textCloudDbInstanceNo = new System.Windows.Forms.TextBox();
             this.buttonApiGatewayConnectionTest = new System.Windows.Forms.Button();
             this.buttonSaveDmsInfo = new System.Windows.Forms.Button();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panelObjectStorageInfo.SuspendLayout();
             this.groupBoxObjectStorageInfo.SuspendLayout();
             this.panelApiGatewayInfo.SuspendLayout();
@@ -87,6 +88,7 @@
             // groupBoxObjectStorageInfo
             // 
             this.groupBoxObjectStorageInfo.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBoxObjectStorageInfo.Controls.Add(this.button1);
             this.groupBoxObjectStorageInfo.Controls.Add(this.textObjectEndPoint);
             this.groupBoxObjectStorageInfo.Controls.Add(this.buttonConnectionTest);
             this.groupBoxObjectStorageInfo.Controls.Add(this.labelObjectStorageDesc);
@@ -107,6 +109,22 @@
             this.groupBoxObjectStorageInfo.TabStop = false;
             this.groupBoxObjectStorageInfo.Text = "[Target Object Storage Info]";
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(55)))), ((int)(((byte)(70)))));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(528, 183);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(137, 23);
+            this.button1.TabIndex = 27;
+            this.button1.Text = "Create Bucket";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.buttonCreateBucket_Click);
+            // 
             // textObjectEndPoint
             // 
             this.textObjectEndPoint.Location = new System.Drawing.Point(255, 27);
@@ -122,7 +140,7 @@
             this.buttonConnectionTest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonConnectionTest.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonConnectionTest.ForeColor = System.Drawing.Color.White;
-            this.buttonConnectionTest.Location = new System.Drawing.Point(671, 177);
+            this.buttonConnectionTest.Location = new System.Drawing.Point(671, 183);
             this.buttonConnectionTest.Name = "buttonConnectionTest";
             this.buttonConnectionTest.Size = new System.Drawing.Size(137, 23);
             this.buttonConnectionTest.TabIndex = 2;
@@ -219,7 +237,8 @@
             this.textBoxEndPointLable.Font = new System.Drawing.Font("Consolas", 8.25F);
             this.textBoxEndPointLable.Location = new System.Drawing.Point(255, 51);
             this.textBoxEndPointLable.Name = "textBoxEndPointLable";
-            this.textBoxEndPointLable.Size = new System.Drawing.Size(311, 20);
+            this.textBoxEndPointLable.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.textBoxEndPointLable.Size = new System.Drawing.Size(429, 20);
             this.textBoxEndPointLable.TabIndex = 26;
             this.textBoxEndPointLable.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -235,6 +254,9 @@
             // groupBoxApiGatewayInfo
             // 
             this.groupBoxApiGatewayInfo.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBoxApiGatewayInfo.Controls.Add(this.labelPlatform);
+            this.groupBoxApiGatewayInfo.Controls.Add(this.rbVpcPublic);
+            this.groupBoxApiGatewayInfo.Controls.Add(this.rbClassicPublic);
             this.groupBoxApiGatewayInfo.Controls.Add(this.textBoxAPIEndPointLable);
             this.groupBoxApiGatewayInfo.Controls.Add(this.labelApiGateWayDesc);
             this.groupBoxApiGatewayInfo.Controls.Add(this.textApiUrl);
@@ -255,12 +277,47 @@
             this.groupBoxApiGatewayInfo.TabStop = false;
             this.groupBoxApiGatewayInfo.Text = "[ApiGateway Info]";
             // 
+            // labelPlatform
+            // 
+            this.labelPlatform.AutoSize = true;
+            this.labelPlatform.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPlatform.Location = new System.Drawing.Point(184, 26);
+            this.labelPlatform.Name = "labelPlatform";
+            this.labelPlatform.Size = new System.Drawing.Size(63, 14);
+            this.labelPlatform.TabIndex = 33;
+            this.labelPlatform.Text = "Platform";
+            // 
+            // rbVpcPublic
+            // 
+            this.rbVpcPublic.AutoSize = true;
+            this.rbVpcPublic.Location = new System.Drawing.Point(390, 26);
+            this.rbVpcPublic.Name = "rbVpcPublic";
+            this.rbVpcPublic.Size = new System.Drawing.Size(95, 18);
+            this.rbVpcPublic.TabIndex = 32;
+            this.rbVpcPublic.TabStop = true;
+            this.rbVpcPublic.Text = "VPC Public";
+            this.rbVpcPublic.UseVisualStyleBackColor = true;
+            this.rbVpcPublic.Click += new System.EventHandler(this.rbPlatformClicked);
+            // 
+            // rbClassicPublic
+            // 
+            this.rbClassicPublic.AutoSize = true;
+            this.rbClassicPublic.Location = new System.Drawing.Point(255, 26);
+            this.rbClassicPublic.Name = "rbClassicPublic";
+            this.rbClassicPublic.Size = new System.Drawing.Size(123, 18);
+            this.rbClassicPublic.TabIndex = 31;
+            this.rbClassicPublic.TabStop = true;
+            this.rbClassicPublic.Text = "Classic Public";
+            this.rbClassicPublic.UseVisualStyleBackColor = true;
+            this.rbClassicPublic.Click += new System.EventHandler(this.rbPlatformClicked);
+            // 
             // textBoxAPIEndPointLable
             // 
             this.textBoxAPIEndPointLable.Font = new System.Drawing.Font("Consolas", 8.25F);
-            this.textBoxAPIEndPointLable.Location = new System.Drawing.Point(255, 54);
+            this.textBoxAPIEndPointLable.Location = new System.Drawing.Point(255, 73);
             this.textBoxAPIEndPointLable.Name = "textBoxAPIEndPointLable";
-            this.textBoxAPIEndPointLable.Size = new System.Drawing.Size(311, 20);
+            this.textBoxAPIEndPointLable.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.textBoxAPIEndPointLable.Size = new System.Drawing.Size(429, 20);
             this.textBoxAPIEndPointLable.TabIndex = 27;
             this.textBoxAPIEndPointLable.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -269,7 +326,7 @@
             this.labelApiGateWayDesc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelApiGateWayDesc.AutoSize = true;
             this.labelApiGateWayDesc.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelApiGateWayDesc.Location = new System.Drawing.Point(549, 132);
+            this.labelApiGateWayDesc.Location = new System.Drawing.Point(549, 151);
             this.labelApiGateWayDesc.Name = "labelApiGateWayDesc";
             this.labelApiGateWayDesc.Size = new System.Drawing.Size(259, 13);
             this.labelApiGateWayDesc.TabIndex = 30;
@@ -277,7 +334,7 @@
             // 
             // textApiUrl
             // 
-            this.textApiUrl.Location = new System.Drawing.Point(255, 29);
+            this.textApiUrl.Location = new System.Drawing.Point(255, 48);
             this.textApiUrl.Name = "textApiUrl";
             this.textApiUrl.Size = new System.Drawing.Size(318, 22);
             this.textApiUrl.TabIndex = 25;
@@ -318,7 +375,7 @@
             // 
             // textApiGatewaySecretKey
             // 
-            this.textApiGatewaySecretKey.Location = new System.Drawing.Point(255, 107);
+            this.textApiGatewaySecretKey.Location = new System.Drawing.Point(255, 126);
             this.textApiGatewaySecretKey.Name = "textApiGatewaySecretKey";
             this.textApiGatewaySecretKey.Size = new System.Drawing.Size(553, 22);
             this.textApiGatewaySecretKey.TabIndex = 21;
@@ -327,7 +384,7 @@
             // 
             this.labelSecretKey.AutoSize = true;
             this.labelSecretKey.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSecretKey.Location = new System.Drawing.Point(172, 110);
+            this.labelSecretKey.Location = new System.Drawing.Point(172, 129);
             this.labelSecretKey.Name = "labelSecretKey";
             this.labelSecretKey.Size = new System.Drawing.Size(77, 14);
             this.labelSecretKey.TabIndex = 20;
@@ -335,7 +392,7 @@
             // 
             // textApiGatewayAccessKey
             // 
-            this.textApiGatewayAccessKey.Location = new System.Drawing.Point(255, 78);
+            this.textApiGatewayAccessKey.Location = new System.Drawing.Point(255, 97);
             this.textApiGatewayAccessKey.Name = "textApiGatewayAccessKey";
             this.textApiGatewayAccessKey.Size = new System.Drawing.Size(553, 22);
             this.textApiGatewayAccessKey.TabIndex = 19;
@@ -344,7 +401,7 @@
             // 
             this.labelAccessKey.AutoSize = true;
             this.labelAccessKey.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAccessKey.Location = new System.Drawing.Point(172, 81);
+            this.labelAccessKey.Location = new System.Drawing.Point(172, 100);
             this.labelAccessKey.Name = "labelAccessKey";
             this.labelAccessKey.Size = new System.Drawing.Size(77, 14);
             this.labelAccessKey.TabIndex = 18;
@@ -354,7 +411,7 @@
             // 
             this.labelEndPoint.AutoSize = true;
             this.labelEndPoint.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEndPoint.Location = new System.Drawing.Point(67, 34);
+            this.labelEndPoint.Location = new System.Drawing.Point(67, 53);
             this.labelEndPoint.Name = "labelEndPoint";
             this.labelEndPoint.Size = new System.Drawing.Size(182, 14);
             this.labelEndPoint.TabIndex = 16;
@@ -368,7 +425,7 @@
             this.checkSSLApiGateway.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkSSLApiGateway.Enabled = false;
             this.checkSSLApiGateway.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkSSLApiGateway.Location = new System.Drawing.Point(579, 31);
+            this.checkSSLApiGateway.Location = new System.Drawing.Point(579, 50);
             this.checkSSLApiGateway.Name = "checkSSLApiGateway";
             this.checkSSLApiGateway.Size = new System.Drawing.Size(229, 18);
             this.checkSSLApiGateway.TabIndex = 14;
@@ -476,16 +533,6 @@
             this.buttonSaveDmsInfo.UseVisualStyleBackColor = false;
             this.buttonSaveDmsInfo.Click += new System.EventHandler(this.buttonSaveDmsInfo_Click);
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // contextMenuStrip2
-            // 
-            this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(61, 4);
-            // 
             // Configuration
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -544,9 +591,11 @@
         private System.Windows.Forms.Label labelDbServerInstanceNo;
         private System.Windows.Forms.Label labelDatabaseInstanceNoDesciption;
         private System.Windows.Forms.Button buttonDatabaseConnectionTest;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.TextBox textBoxEndPointLable;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
         private System.Windows.Forms.TextBox textBoxAPIEndPointLable;
+        private System.Windows.Forms.Label labelPlatform;
+        private System.Windows.Forms.RadioButton rbVpcPublic;
+        private System.Windows.Forms.RadioButton rbClassicPublic;
+        private System.Windows.Forms.Button button1;
     }
 }

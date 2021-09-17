@@ -31,12 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panelMain = new System.Windows.Forms.Panel();
-            //this.downloadObject2Local = new DMS.DownloadObject2Local();
-            //this.downloadInternal2Object = new DMS.DownloadInternal2Object();
-            //this.uploadObject2Internal = new DMS.UploadObject2Internal();
-            //this.uploadLocal2Object = new DMS.UploadLocal2Object();
-            //this.viewLog = new DMS.ViewLog();
-            //this.restoreDatabase = new DMS.RestoreDatabase();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -64,7 +58,6 @@
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.labelVersion = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
-            this.panelMain.SuspendLayout();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
@@ -88,67 +81,11 @@
             // 
             // panelMain
             // 
-            //this.panelMain.Controls.Add(this.downloadObject2Local);
-            //this.panelMain.Controls.Add(this.downloadInternal2Object);
-            //this.panelMain.Controls.Add(this.configuration);
-            //this.panelMain.Controls.Add(this.uploadObject2Internal);
-            //this.panelMain.Controls.Add(this.uploadLocal2Object);
-            //this.panelMain.Controls.Add(this.viewLog);
-            //this.panelMain.Controls.Add(this.restoreDatabase);
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMain.Location = new System.Drawing.Point(200, 94);
             this.panelMain.Name = "panelMain";
             this.panelMain.Size = new System.Drawing.Size(822, 627);
             this.panelMain.TabIndex = 5;
-            // 
-            // downloadObject2Local
-            //
-            //this.downloadObject2Local.Location = new System.Drawing.Point(198, 224);
-            //this.downloadObject2Local.Name = "downloadObject2Local";
-            //this.downloadObject2Local.Size = new System.Drawing.Size(822, 628);
-            //this.downloadObject2Local.TabIndex = 7;
-            // 
-            // downloadInternal2Object
-            // 
-            //this.downloadInternal2Object.Location = new System.Drawing.Point(127, 162);
-            //this.downloadInternal2Object.Name = "downloadInternal2Object";
-            //this.downloadInternal2Object.Size = new System.Drawing.Size(822, 628);
-            //this.downloadInternal2Object.TabIndex = 6;
-            // 
-            // configuration
-            // 
-            //this.configuration.Location = new System.Drawing.Point(276, 187);
-            //this.configuration.Name = "configuration";
-            //this.configuration.Size = new System.Drawing.Size(822, 628);
-            //this.configuration.TabIndex = 5;
-            // 
-            // uploadObject2Internal
-            // 
-            //this.uploadObject2Internal.Location = new System.Drawing.Point(249, 187);
-            //this.uploadObject2Internal.Name = "uploadObject2Internal";
-            //this.uploadObject2Internal.Size = new System.Drawing.Size(822, 628);
-            //this.uploadObject2Internal.TabIndex = 2;
-            // 
-            // uploadLocal2Object
-            // 
-            //this.uploadLocal2Object.Location = new System.Drawing.Point(198, 174);
-            //this.uploadLocal2Object.Name = "uploadLocal2Object";
-            //this.uploadLocal2Object.Size = new System.Drawing.Size(822, 628);
-            //this.uploadLocal2Object.TabIndex = 1;
-            // 
-            // viewLog
-            // 
-            //this.viewLog.Location = new System.Drawing.Point(211, 150);
-            //this.viewLog.Name = "viewLog";
-            //this.viewLog.Size = new System.Drawing.Size(822, 628);
-            //this.viewLog.TabIndex = 4;
-            // 
-            // restoreDatabase
-            // 
-            //this.restoreDatabase.Location = new System.Drawing.Point(211, 140);
-            //this.restoreDatabase.Name = "restoreDatabase";
-            //this.restoreDatabase.Size = new System.Drawing.Size(822, 628);
-            //this.restoreDatabase.TabIndex = 3;
             // 
             // panel6
             // 
@@ -473,7 +410,7 @@
             this.labelVersion.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelVersion.ForeColor = System.Drawing.Color.DarkGray;
             this.labelVersion.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.labelVersion.Location = new System.Drawing.Point(869, 9);
+            this.labelVersion.Location = new System.Drawing.Point(894, 9);
             this.labelVersion.Name = "labelVersion";
             this.labelVersion.Size = new System.Drawing.Size(56, 15);
             this.labelVersion.TabIndex = 2;
@@ -494,7 +431,6 @@
             this.Text = "DMT for CDB (MSSQL)";
             this.Shown += new System.EventHandler(this.Form1_Shown);
             this.panel1.ResumeLayout(false);
-            this.panelMain.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

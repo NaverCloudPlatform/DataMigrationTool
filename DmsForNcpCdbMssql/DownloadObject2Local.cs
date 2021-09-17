@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
 using NLog;
+using DMS.General;
 
 namespace DMS
 {
@@ -32,10 +33,8 @@ namespace DMS
         private DownloadObject2Local()
         {
             InitializeComponent();
-            dgvObjectStorage.RowHeadersVisible = false;
-            dgvObjectStorage.BackgroundColor = Color.White;
-            dgvLocalDrive.RowHeadersVisible = false;
-            dgvLocalDrive.BackgroundColor = Color.White;
+            GFunctions.ColumSizeFix(dgvObjectStorage);
+            GFunctions.ColumSizeFix(dgvLocalDrive);
             config = Config.Instance;
             objectStorage = ObjectStorage.Instance;
             WriteConfig2TextBox();
@@ -45,7 +44,7 @@ namespace DMS
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (workObjectStorage | workLocalStorage)
+                if (workObjectStorage || workLocalStorage)
                     return; 
                 ConfigSaveAllItem();
                 ObjectStorageFileList();
@@ -76,7 +75,7 @@ namespace DMS
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            if (workObjectStorage | workLocalStorage)
+            if (workObjectStorage || workLocalStorage)
                 return;
             ConfigSaveAllItem();
             loadLocalDriveFileList();
@@ -166,15 +165,18 @@ namespace DMS
                 {
                     if (bool.Parse(item.Cells[0].Value.ToString()))
                     {
-                        nlog.Warn(string.Format("{0} {1} upload Started", textLocalFolder.Text, item.Cells[1].EditedFormattedValue.ToString()));
+                        nlog.Warn(string.Format("{0} {1} download Started", textLocalFolder.Text, item.Cells[1].EditedFormattedValue.ToString()));
+                        string[] fullpath = item.Cells[1].EditedFormattedValue.ToString().Split(new string[] { "/" }, StringSplitOptions.RemoveEmptyEntries);
+                        string file = fullpath.Last();
                         Task task = objectStorage.download(
                             item.Cells[1].EditedFormattedValue.ToString()
                             , config.GetEnumValue(Category.Config, Key.ObjectBucket)
-                            , Path.Combine(textLocalFolder.Text, item.Cells[1].EditedFormattedValue.ToString())
+                            //, Path.Combine(textLocalFolder.Text, item.Cells[1].EditedFormattedValue.ToString())
+                            , Path.Combine(textLocalFolder.Text, file)
                             );
                         StatusUpdate(Status.Working);
                         await task;
-                        nlog.Warn(string.Format("{0} {1} upload Completed", textLocalFolder.Text, item.Cells[1].EditedFormattedValue.ToString()));
+                        nlog.Warn(string.Format("{0} {1} download Completed", textLocalFolder.Text, item.Cells[1].EditedFormattedValue.ToString()));
                     }
                 }
             }

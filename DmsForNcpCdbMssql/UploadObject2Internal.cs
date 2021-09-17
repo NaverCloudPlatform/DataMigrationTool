@@ -10,7 +10,8 @@ using System.Windows.Forms;
 using NLog;
 using System.IO;
 using Newtonsoft.Json;
-using System.Threading; 
+using System.Threading;
+using DMS.General;
 
 namespace DMS
 {
@@ -31,10 +32,8 @@ namespace DMS
         private UploadObject2Internal()
         {
             InitializeComponent();
-            dgvObjectStorage.RowHeadersVisible = false;
-            dgvObjectStorage.BackgroundColor = Color.White;
-            dgvInternalStorage.RowHeadersVisible = false;
-            dgvInternalStorage.BackgroundColor = Color.White;
+            GFunctions.ColumSizeFix(dgvObjectStorage);
+            GFunctions.ColumSizeFix(dgvInternalStorage);
             config = Config.Instance;
             objectStorage = ObjectStorage.Instance;
             WriteConfig2TextBox();
@@ -49,7 +48,7 @@ namespace DMS
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (workObjectStorage | workInternalStorage)
+                if (workObjectStorage || workInternalStorage)
                     return; 
                 ObjectStorageFileList();
                 InternalStorageFileList();
@@ -58,7 +57,7 @@ namespace DMS
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            if (workObjectStorage | workInternalStorage)
+            if (workObjectStorage || workInternalStorage)
                 return;
             ConfigSaveAllItem();
             ObjectStorageFileList();
@@ -239,7 +238,10 @@ namespace DMS
                     NullValueHandling = NullValueHandling.Ignore,
                     MissingMemberHandling = MissingMemberHandling.Ignore
                 };
-                
+
+                if (getObjectStorageBackupListResult.Contains("server does not exists"))
+                    throw new Exception("There is no corresponding server. Perform the Configuration steps again.");
+
                 getObjectStorageBackupList getObjectStorageBackupList = JsonConvert.DeserializeObject<getObjectStorageBackupList>(getObjectStorageBackupListResult, settings);
                 List<DmsFileList> files = getObjectStorageBackupList.getObjectStorageBackupListResponse.dmsFileList;
 
@@ -276,6 +278,7 @@ namespace DMS
             {
                 nlog.Error(string.Format("{0},{1}", ex.Message, ex.StackTrace));
                 workInternalStorage = false;
+                MessageBox.Show(ex.Message);
             }
 
             StatusUpdate(Status.Completed);
