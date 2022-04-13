@@ -49,7 +49,7 @@ ApiGateway Info 항목의 Platform 은 Classic Public 과 VPC Public 을 지원�
 
 ##### EndPoint 
 
-[링크 : ObjectStorageEndPoint_URL](https://api.ncloud-docs.com/docs/storage-objectstorage) Amazon S3 EndPoint 나 네이버 클라우드 플랫폼 오브젝트 스토리지 접속 도메인입니다. http:// 및 https://는 제외하고 적습니다. 해당 URL 이 틀리면 A WebException with status NameResolutionFailure was thrown. 에러가 발생합니다.
+[링크 : ObjectStorageEndPoint_URL](https://api.ncloud-docs.com/docs/storage-objectstorage) Amazon S3 EndPoint 나 네이버 클라우드 플랫폼 오브젝트 스토리지 접속 도메인입니다. http:// 및 https:// 는 제외하고 적습니다. 해당 URL 이 틀리면 A WebException with status NameResolutionFailure was thrown. 에러가 발생합니다.
 
 ![](mdimg/dms_1.png)
 
