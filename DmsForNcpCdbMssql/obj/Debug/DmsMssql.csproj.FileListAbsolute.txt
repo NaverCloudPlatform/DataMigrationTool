@@ -1,0 +1,131 @@
+C:\Users\rdsadmin\Documents\Visual Studio 2015\Projects\DmsForNcpCdbMssql\DmsForNcpCdbMssql\bin\Debug\NLog.config
+C:\Users\rdsadmin\Documents\Visual Studio 2015\Projects\DmsForNcpCdbMssql\DmsForNcpCdbMssql\bin\Debug\ConfigDms.txt
+C:\Users\rdsadmin\Documents\Visual Studio 2015\Projects\DmsForNcpCdbMssql\DmsForNcpCdbMssql\bin\Debug\Resources\ci.PNG
+C:\Users\rdsadmin\Documents\Visual Studio 2015\Projects\DmsForNcpCdbMssql\DmsForNcpCdbMssql\bin\Debug\DmsMssql.exe.config
+C:\Users\rdsadmin\Documents\Visual Studio 2015\Projects\DmsForNcpCdbMssql\DmsForNcpCdbMssql\bin\Debug\DmsMssql.exe
+C:\Users\rdsadmin\Documents\Visual Studio 2015\Projects\DmsForNcpCdbMssql\DmsForNcpCdbMssql\bin\Debug\DmsMssql.pdb
+C:\Users\rdsadmin\Documents\Visual Studio 2015\Projects\DmsForNcpCdbMssql\DmsForNcpCdbMssql\bin\Debug\AWSSDK.Core.dll
+C:\Users\rdsadmin\Documents\Visual Studio 2015\Projects\DmsForNcpCdbMssql\DmsForNcpCdbMssql\bin\Debug\AWSSDK.S3.dll
+C:\Users\rdsadmin\Documents\Visual Studio 2015\Projects\DmsForNcpCdbMssql\DmsForNcpCdbMssql\bin\Debug\Newtonsoft.Json.dll
+C:\Users\rdsadmin\Documents\Visual Studio 2015\Projects\DmsForNcpCdbMssql\DmsForNcpCdbMssql\bin\Debug\NLog.dll
+C:\Users\rdsadmin\Documents\Visual Studio 2015\Projects\DmsForNcpCdbMssql\DmsForNcpCdbMssql\bin\Debug\AWSSDK.Core.pdb
+C:\Users\rdsadmin\Documents\Visual Studio 2015\Projects\DmsForNcpCdbMssql\DmsForNcpCdbMssql\bin\Debug\AWSSDK.Core.xml
+C:\Users\rdsadmin\Documents\Visual Studio 2015\Projects\DmsForNcpCdbMssql\DmsForNcpCdbMssql\bin\Debug\AWSSDK.S3.pdb
+C:\Users\rdsadmin\Documents\Visual Studio 2015\Projects\DmsForNcpCdbMssql\DmsForNcpCdbMssql\bin\Debug\AWSSDK.S3.xml
+C:\Users\rdsadmin\Documents\Visual Studio 2015\Projects\DmsForNcpCdbMssql\DmsForNcpCdbMssql\bin\Debug\Newtonsoft.Json.xml
+C:\Users\rdsadmin\Documents\Visual Studio 2015\Projects\DmsForNcpCdbMssql\DmsForNcpCdbMssql\bin\Debug\NLog.xml
+C:\Users\rdsadmin\Documents\Visual Studio 2015\Projects\DmsForNcpCdbMssql\DmsForNcpCdbMssql\obj\Debug\DMS.DownloadObject2Local.resources
+C:\Users\rdsadmin\Documents\Visual Studio 2015\Projects\DmsForNcpCdbMssql\DmsForNcpCdbMssql\obj\Debug\DMS.UploadObject2Internal.resources
+C:\Users\rdsadmin\Documents\Visual Studio 2015\Projects\DmsForNcpCdbMssql\DmsForNcpCdbMssql\obj\Debug\DMS.Configuration.resources
+C:\Users\rdsadmin\Documents\Visual Studio 2015\Projects\DmsForNcpCdbMssql\DmsForNcpCdbMssql\obj\Debug\DMS.DownloadInternal2Object.resources
+C:\Users\rdsadmin\Documents\Visual Studio 2015\Projects\DmsForNcpCdbMssql\DmsForNcpCdbMssql\obj\Debug\DMS.Form1.resources
+C:\Users\rdsadmin\Documents\Visual Studio 2015\Projects\DmsForNcpCdbMssql\DmsForNcpCdbMssql\obj\Debug\DMS.UploadLocal2Object.resources
+C:\Users\rdsadmin\Documents\Visual Studio 2015\Projects\DmsForNcpCdbMssql\DmsForNcpCdbMssql\obj\Debug\DMS.Properties.Resources.resources
+C:\Users\rdsadmin\Documents\Visual Studio 2015\Projects\DmsForNcpCdbMssql\DmsForNcpCdbMssql\obj\Debug\DMS.RestoreDatabase.resources
+C:\Users\rdsadmin\Documents\Visual Studio 2015\Projects\DmsForNcpCdbMssql\DmsForNcpCdbMssql\obj\Debug\DMS.ViewLog.resources
+C:\Users\rdsadmin\Documents\Visual Studio 2015\Projects\DmsForNcpCdbMssql\DmsForNcpCdbMssql\obj\Debug\DmsMssql.csproj.GenerateResource.cache
+C:\Users\rdsadmin\Documents\Visual Studio 2015\Projects\DmsForNcpCdbMssql\DmsForNcpCdbMssql\obj\Debug\DmsMssql.exe
+C:\Users\rdsadmin\Documents\Visual Studio 2015\Projects\DmsForNcpCdbMssql\DmsForNcpCdbMssql\obj\Debug\DmsMssql.pdb
+C:\Users\rdsadmin\Documents\Visual Studio 2015\Projects\DmsForNcpCdbMssql\DmsForNcpCdbMssql\obj\Debug\DmsMssql.csprojResolveAssemblyReference.cache
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationTool\DmsForNcpCdbMssql\bin\Debug\NLog.config
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationTool\DmsForNcpCdbMssql\bin\Debug\ConfigDms.txt
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationTool\DmsForNcpCdbMssql\bin\Debug\Resources\ci.PNG
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationTool\DmsForNcpCdbMssql\bin\Debug\DmsMssql.exe.config
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationTool\DmsForNcpCdbMssql\bin\Debug\DmsMssql.exe
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationTool\DmsForNcpCdbMssql\bin\Debug\DmsMssql.pdb
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationTool\DmsForNcpCdbMssql\bin\Debug\AWSSDK.Core.dll
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationTool\DmsForNcpCdbMssql\bin\Debug\AWSSDK.S3.dll
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationTool\DmsForNcpCdbMssql\bin\Debug\Newtonsoft.Json.dll
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationTool\DmsForNcpCdbMssql\bin\Debug\NLog.dll
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationTool\DmsForNcpCdbMssql\bin\Debug\AWSSDK.Core.pdb
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationTool\DmsForNcpCdbMssql\bin\Debug\AWSSDK.Core.xml
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationTool\DmsForNcpCdbMssql\bin\Debug\AWSSDK.S3.pdb
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationTool\DmsForNcpCdbMssql\bin\Debug\AWSSDK.S3.xml
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationTool\DmsForNcpCdbMssql\bin\Debug\Newtonsoft.Json.xml
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationTool\DmsForNcpCdbMssql\bin\Debug\NLog.xml
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationTool\DmsForNcpCdbMssql\obj\Debug\DmsMssql.csprojAssemblyReference.cache
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationTool\DmsForNcpCdbMssql\obj\Debug\DMS.DownloadObject2Local.resources
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationTool\DmsForNcpCdbMssql\obj\Debug\DMS.UploadObject2Internal.resources
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationTool\DmsForNcpCdbMssql\obj\Debug\DMS.Configuration.resources
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationTool\DmsForNcpCdbMssql\obj\Debug\DMS.DownloadInternal2Object.resources
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationTool\DmsForNcpCdbMssql\obj\Debug\DMS.Form1.resources
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationTool\DmsForNcpCdbMssql\obj\Debug\DMS.UploadLocal2Object.resources
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationTool\DmsForNcpCdbMssql\obj\Debug\DMS.Properties.Resources.resources
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationTool\DmsForNcpCdbMssql\obj\Debug\DMS.RestoreDatabase.resources
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationTool\DmsForNcpCdbMssql\obj\Debug\DMS.ViewLog.resources
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationTool\DmsForNcpCdbMssql\obj\Debug\DmsMssql.csproj.GenerateResource.cache
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationTool\DmsForNcpCdbMssql\obj\Debug\DmsMssql.csproj.CopyComplete
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationTool\DmsForNcpCdbMssql\obj\Debug\DmsMssql.exe
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationTool\DmsForNcpCdbMssql\obj\Debug\DmsMssql.pdb
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationTool\DmsForNcpCdbMssql\bin\Debug\packages.config
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationTool\DmsForNcpCdbMssql\obj\Debug\DmsMssql.csproj.CoreCompileInputs.cache
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationToolVPC\DmsForNcpCdbMssql\bin\Debug\NLog.config
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationToolVPC\DmsForNcpCdbMssql\bin\Debug\ConfigDms.txt
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationToolVPC\DmsForNcpCdbMssql\bin\Debug\packages.config
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationToolVPC\DmsForNcpCdbMssql\bin\Debug\Resources\ci.PNG
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationToolVPC\DmsForNcpCdbMssql\bin\Debug\DmsMssql.exe.config
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationToolVPC\DmsForNcpCdbMssql\bin\Debug\DmsMssql.exe
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationToolVPC\DmsForNcpCdbMssql\bin\Debug\DmsMssql.pdb
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationToolVPC\DmsForNcpCdbMssql\bin\Debug\AWSSDK.Core.dll
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationToolVPC\DmsForNcpCdbMssql\bin\Debug\AWSSDK.S3.dll
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationToolVPC\DmsForNcpCdbMssql\bin\Debug\Newtonsoft.Json.dll
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationToolVPC\DmsForNcpCdbMssql\bin\Debug\NLog.dll
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationToolVPC\DmsForNcpCdbMssql\bin\Debug\AWSSDK.Core.pdb
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationToolVPC\DmsForNcpCdbMssql\bin\Debug\AWSSDK.Core.xml
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationToolVPC\DmsForNcpCdbMssql\bin\Debug\AWSSDK.S3.pdb
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationToolVPC\DmsForNcpCdbMssql\bin\Debug\AWSSDK.S3.xml
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationToolVPC\DmsForNcpCdbMssql\bin\Debug\Newtonsoft.Json.xml
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationToolVPC\DmsForNcpCdbMssql\bin\Debug\NLog.xml
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationToolVPC\DmsForNcpCdbMssql\obj\Debug\DmsMssql.csprojAssemblyReference.cache
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationToolVPC\DmsForNcpCdbMssql\obj\Debug\DMS.DownloadObject2Local.resources
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationToolVPC\DmsForNcpCdbMssql\obj\Debug\DMS.UploadObject2Internal.resources
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationToolVPC\DmsForNcpCdbMssql\obj\Debug\DMS.Configuration.resources
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationToolVPC\DmsForNcpCdbMssql\obj\Debug\DMS.DownloadInternal2Object.resources
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationToolVPC\DmsForNcpCdbMssql\obj\Debug\DMS.Form1.resources
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationToolVPC\DmsForNcpCdbMssql\obj\Debug\DMS.UploadLocal2Object.resources
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationToolVPC\DmsForNcpCdbMssql\obj\Debug\DMS.Properties.Resources.resources
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationToolVPC\DmsForNcpCdbMssql\obj\Debug\DMS.RestoreDatabase.resources
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationToolVPC\DmsForNcpCdbMssql\obj\Debug\DMS.ViewLog.resources
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationToolVPC\DmsForNcpCdbMssql\obj\Debug\DmsMssql.csproj.GenerateResource.cache
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationToolVPC\DmsForNcpCdbMssql\obj\Debug\DmsMssql.csproj.CoreCompileInputs.cache
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationToolVPC\DmsForNcpCdbMssql\obj\Debug\DmsMssql.csproj.CopyComplete
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationToolVPC\DmsForNcpCdbMssql\obj\Debug\DmsMssql.exe
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationToolVPC\DmsForNcpCdbMssql\obj\Debug\DmsMssql.pdb
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationToolVPC\DmsForNcpCdbMssql\obj\Debug\DMS.UploadObject2InternalVP.resources
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationToolVPC\DmsForNcpCdbMssql\obj\Debug\DMS.RestoreDatabaseVP.resources
+C:\Users\minsouk\Desktop\회사\DMT\DataMigrationToolVPC\DmsForNcpCdbMssql\obj\Debug\DMS.DownloadInternal2ObjectVP.resources
+C:\DMT\DmsForNcpCdbMssql\bin\Debug\NLog.config
+C:\DMT\DmsForNcpCdbMssql\bin\Debug\ConfigDms.txt
+C:\DMT\DmsForNcpCdbMssql\bin\Debug\packages.config
+C:\DMT\DmsForNcpCdbMssql\bin\Debug\Resources\ci.PNG
+C:\DMT\DmsForNcpCdbMssql\bin\Debug\DmsMssql.exe.config
+C:\DMT\DmsForNcpCdbMssql\bin\Debug\DmsMssql.exe
+C:\DMT\DmsForNcpCdbMssql\bin\Debug\DmsMssql.pdb
+C:\DMT\DmsForNcpCdbMssql\bin\Debug\AWSSDK.Core.dll
+C:\DMT\DmsForNcpCdbMssql\bin\Debug\AWSSDK.S3.dll
+C:\DMT\DmsForNcpCdbMssql\bin\Debug\Newtonsoft.Json.dll
+C:\DMT\DmsForNcpCdbMssql\bin\Debug\NLog.dll
+C:\DMT\DmsForNcpCdbMssql\bin\Debug\AWSSDK.Core.pdb
+C:\DMT\DmsForNcpCdbMssql\bin\Debug\AWSSDK.Core.xml
+C:\DMT\DmsForNcpCdbMssql\bin\Debug\AWSSDK.S3.pdb
+C:\DMT\DmsForNcpCdbMssql\bin\Debug\AWSSDK.S3.xml
+C:\DMT\DmsForNcpCdbMssql\bin\Debug\Newtonsoft.Json.xml
+C:\DMT\DmsForNcpCdbMssql\bin\Debug\NLog.xml
+C:\DMT\DmsForNcpCdbMssql\obj\Debug\DmsMssql.csprojAssemblyReference.cache
+C:\DMT\DmsForNcpCdbMssql\obj\Debug\DMS.DownloadInternal2ObjectVP.resources
+C:\DMT\DmsForNcpCdbMssql\obj\Debug\DMS.DownloadObject2Local.resources
+C:\DMT\DmsForNcpCdbMssql\obj\Debug\DMS.RestoreDatabaseVP.resources
+C:\DMT\DmsForNcpCdbMssql\obj\Debug\DMS.UploadObject2InternalVP.resources
+C:\DMT\DmsForNcpCdbMssql\obj\Debug\DMS.UploadObject2Internal.resources
+C:\DMT\DmsForNcpCdbMssql\obj\Debug\DMS.Configuration.resources
+C:\DMT\DmsForNcpCdbMssql\obj\Debug\DMS.DownloadInternal2Object.resources
+C:\DMT\DmsForNcpCdbMssql\obj\Debug\DMS.Form1.resources
+C:\DMT\DmsForNcpCdbMssql\obj\Debug\DMS.UploadLocal2Object.resources
+C:\DMT\DmsForNcpCdbMssql\obj\Debug\DMS.Properties.Resources.resources
+C:\DMT\DmsForNcpCdbMssql\obj\Debug\DMS.RestoreDatabase.resources
+C:\DMT\DmsForNcpCdbMssql\obj\Debug\DMS.ViewLog.resources
+C:\DMT\DmsForNcpCdbMssql\obj\Debug\DmsMssql.csproj.GenerateResource.cache
+C:\DMT\DmsForNcpCdbMssql\obj\Debug\DmsMssql.csproj.CoreCompileInputs.cache
+C:\DMT\DmsForNcpCdbMssql\obj\Debug\DmsMssql.csproj.CopyComplete
+C:\DMT\DmsForNcpCdbMssql\obj\Debug\DmsMssql.exe
+C:\DMT\DmsForNcpCdbMssql\obj\Debug\DmsMssql.pdb
