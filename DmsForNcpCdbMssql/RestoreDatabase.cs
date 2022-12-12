@@ -172,7 +172,7 @@ namespace DMS
                                     item.Cells[1].EditedFormattedValue.ToString()
                                     , new Response
                                     {
-                                        requestNo = restoreDmsDatabase.restoreDmsDatabaseResponse.requestNo,
+                                        requestNo = restoreDmsDatabase.restoreDmsDatabaseResponse.requestNo.ToString(),
                                         requestReturnCode = restoreDmsDatabase.restoreDmsDatabaseResponse.returnCode,
                                         returnCode = "",
                                         returnCodeName = ""
@@ -495,7 +495,7 @@ namespace DMS
                                 item.Cells[1].EditedFormattedValue.ToString()
                                 , new Response
                                 {
-                                    requestNo = restoreDmsTransactionLog.restoreDmsTransactionLogResponse.requestNo,
+                                    requestNo = restoreDmsTransactionLog.restoreDmsTransactionLogResponse.requestNo.ToString(),
                                     requestReturnCode = restoreDmsTransactionLog.restoreDmsTransactionLogResponse.returnCode,
                                     returnCode = "",
                                     returnCodeName = ""

@@ -177,7 +177,7 @@ namespace DMS
 
     class getDmsOperationVP
     {
-        public getDmsOperationResponse dmsStatus { get; set; }
+        public getDmsOperationResponse getDmsOperationResponse { get; set; }
     }
 
     class getDmsOperationResponse
@@ -271,7 +271,7 @@ namespace DMS
 
     class restoreDmsDatabaseVP
     {
-        public restoreDmsDatabaseResponse dmsRequest { get; set; }
+        public restoreDmsDatabaseResponse restoreDmsDatabaseResponse { get; set; }
     }
 
     class restoreDmsDatabaseResponse
@@ -279,7 +279,7 @@ namespace DMS
         public string requestId { get; set; }
         public string returnCode { get; set; }
         public string returnMessage { get; set; }
-        public string requestNo { get; set; }
+        public int requestNo { get; set; }
     }
 
     class restoreDmsTransactionLog
@@ -289,7 +289,7 @@ namespace DMS
 
     class restoreDmsTransactionLogVP
     {
-        public restoreDmsTransactionLogResponse dmsRequest { get; set; }
+        public restoreDmsTransactionLogResponse restoreDmsTransactionLogResponse { get; set; }
     }
 
     class restoreDmsTransactionLogResponse
@@ -297,7 +297,7 @@ namespace DMS
         public string requestId { get; set; }
         public string returnCode { get; set; }
         public string returnMessage { get; set; }
-        public string requestNo { get; set; }
+        public int requestNo { get; set; }
     }
 
     class ObjectStorageFile

@@ -165,15 +165,15 @@ namespace DMS
                             }
                             else
                             {
-                                restoreDmsDatabaseVP restoreDmsDatabaseVP = JsonConvert.DeserializeObject<restoreDmsDatabaseVP>(json);
+                                restoreDmsDatabaseVP restoreDmsDatabaseVP = JsonConvert.DeserializeObject<restoreDmsDatabaseVP>(json, settings);
                                 ApiResponseRecord(
                                     config.GetEnumValue(Category.Config, Key.CloudDbInstanceNo),
                                     config.GetEnumValue(Category.Upload, Key.NewDatabaseName),
                                     item.Cells[1].EditedFormattedValue.ToString()
                                     , new Response
                                     {
-                                        requestNo = restoreDmsDatabaseVP.dmsRequest.requestNo,
-                                        requestReturnCode = restoreDmsDatabaseVP.dmsRequest.returnCode,
+                                        requestNo = restoreDmsDatabaseVP.restoreDmsDatabaseResponse.requestNo.ToString(),
+                                        requestReturnCode = restoreDmsDatabaseVP.restoreDmsDatabaseResponse.returnCode,
                                         returnCode = "",
                                         returnCodeName = ""
                                     });
@@ -425,7 +425,7 @@ namespace DMS
                         string codeName = string.Empty;
                         try
                         {
-                            codeName = getDmsOperationVP.dmsStatus.status.codeName;
+                            codeName = getDmsOperationVP.getDmsOperationResponse.status.codeName;
                         }
                         catch { }
                         if (codeName == string.Empty)
@@ -437,7 +437,7 @@ namespace DMS
                         {
                             requestNo = a.Value.requestNo,
                             requestReturnCode = a.Value.requestReturnCode,
-                            returnCode = getDmsOperationVP.dmsStatus.returnCode,
+                            returnCode = getDmsOperationVP.getDmsOperationResponse.returnCode,
                             returnCodeName = codeName
                         });
                         nlog.Warn(json);
@@ -519,8 +519,8 @@ namespace DMS
                                 item.Cells[1].EditedFormattedValue.ToString()
                                 , new Response
                                 {
-                                    requestNo = restoreDmsTransactionLogVP.dmsRequest.requestNo,
-                                    requestReturnCode = restoreDmsTransactionLogVP.dmsRequest.returnCode,
+                                    requestNo = restoreDmsTransactionLogVP.restoreDmsTransactionLogResponse.requestNo.ToString(),
+                                    requestReturnCode = restoreDmsTransactionLogVP.restoreDmsTransactionLogResponse.returnCode,
                                     returnCode = "",
                                     returnCodeName = ""
                                 });
