@@ -579,7 +579,8 @@ namespace DMS
             }
             if (rb.Name == "rbVpcPublic")
             {
-                Platform = "VP";
+                //Platform = "VP";
+                MessageBox.Show("From September 21, 2023, only the classic environment is supported.");
             }
             ZoneVariableChange();
         }

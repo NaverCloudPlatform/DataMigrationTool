@@ -1,5 +1,5 @@
 ﻿Config:::ObjectEndPoint:::kr.object.ncloudstorage.com
-Config:::Platform:::VP
+Config:::Platform:::CP
 Config:::UseSSLObjectStorage:::1
 Config:::ObjectAccessKey:::
 Config:::ObjectSecretKey:::
